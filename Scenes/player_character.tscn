@@ -21,6 +21,7 @@ scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_ia7du")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1505402013]
+zoom = Vector2(0.3, 0.3)
 
 [node name="EnemySpawner" type="Path2D" parent="." unique_id=1811066835]
 position = Vector2(3.608283, 5.8134594)
