@@ -3,9 +3,26 @@
 [ext_resource type="Script" uid="uid://c8wshfpdveddg" path="res://Scripts/spell.gd" id="1_4kiar"]
 [ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="2_lkq0a"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ia7du"]
+
 [node name="circle_spell" type="Node2D" unique_id=1032744867]
 modulate = Color(0.6226018, 0.99999994, 0.4841807, 1)
 script = ExtResource("1_4kiar")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2081771349]
 texture = ExtResource("2_lkq0a")
+
+[node name="Timer" type="Timer" parent="." unique_id=657437196]
+wait_time = 0.1
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=416859306]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1605377818]
+scale = Vector2(7, 7)
+shape = SubResource("CircleShape2D_ia7du")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

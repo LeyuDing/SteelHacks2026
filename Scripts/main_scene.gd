@@ -7,12 +7,14 @@ const circleSpell = preload("res://Scenes/circle_spell.tscn")
 
 # Spells are a dictionary in the following format:
 # {"element" : "fire"/"ice"/"lightning",
-#  "cooldown" : integer,
+#  "damage" : float,
+#  "cooldown" : float,
+#  "duration" : float,
 #  "projectile" : boolean,
 #  "aoe" : "circle"/"rectangle",
 #  "origin" : "mouse"/"self",
-#  "width" : integer,
-#  "height" : integer}
+#  "width" : float,
+#  "height" : float}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,16 +24,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	if Input.is_action_just_released("ui_spell1"):
-		spell_caster({"aoe" : "rectangle", "origin" : "self", "width" : 10, "height" : 1})
+		spell_caster({"damage" : 1.0, "duration" : 10.0, "aoe" : "rectangle", "origin" : "self", "width" : 10.0, "height" : 1.0})
 		
 	if Input.is_action_just_released("ui_spell2"):
-		spell_caster({"aoe" : "circle", "origin" : "mouse", "width" : 1, "height" : 1})
+		spell_caster({"damage" : 1.0, "duration" : 10.0, "aoe" : "circle", "origin" : "mouse", "width" : 1.0, "height" : 1.0})
 		
 	if Input.is_action_just_released("ui_spell3"):
-		spell_caster({"aoe" : "rectangle", "origin" : "mouse", "width" : 1, "height" : 2})
+		spell_caster({"damage" : 10.0, "duration" : 0.1, "aoe" : "rectangle", "origin" : "mouse", "width" : 1.0, "height" : 2.0})
 		
 	if Input.is_action_just_released("ui_spell4"):
-		spell_caster({"aoe" : "circle", "origin" : "self", "width" : 2, "height" : 2})
+		spell_caster({"damage" : 10.0, "duration" : 0.1, "aoe" : "circle", "origin" : "self", "width" : 2.0, "height" : 2.0})
 		
 
 func spell_caster(properties: Dictionary):
@@ -49,6 +51,9 @@ func spell_caster(properties: Dictionary):
 		
 	if properties["origin"] == "mouse":
 		spell_instance.position = get_global_mouse_position()
+		
+	spell_instance.damage = properties["damage"]
+	spell_instance.duration = properties["duration"]
 		
 	spell_instance.scale = Vector2(int(properties["width"]), int(properties["height"]))
 	
