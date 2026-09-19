@@ -7,6 +7,7 @@ const SPEED = 150.0
 @onready var navAgent = $NavigationAgent2D
 
 func _ready():
+	modulate = Color(randf(), randf(), randf(), 1.0)
 	make_path()
 
 func _physics_process(delta: float) -> void:

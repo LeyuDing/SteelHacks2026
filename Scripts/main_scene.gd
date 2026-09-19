@@ -5,6 +5,15 @@ extends Node2D
 const rectangleSpell = preload("res://Scenes/rectangle_spell.tscn")
 const circleSpell = preload("res://Scenes/circle_spell.tscn")
 
+# Spells are a dictionary in the following format:
+# {"element" : "fire"/"ice"/"lightning",
+#  "cooldown" : integer,
+#  "projectile" : boolean,
+#  "aoe" : "circle"/"rectangle",
+#  "origin" : "mouse"/"self",
+#  "width" : integer,
+#  "height" : integer}
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
