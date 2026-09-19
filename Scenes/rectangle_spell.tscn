@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cclhkjabp465e"]
+
+[ext_resource type="Script" uid="uid://c8wshfpdveddg" path="res://Scripts/spell.gd" id="1_7t21j"]
+[ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="1_eovn4"]
+
+[node name="RectangleSpell" type="Node2D" unique_id=426429013]
+script = ExtResource("1_7t21j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=70735943]
+texture = ExtResource("1_eovn4")

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bh3t0r64dhc7r"]
+
+[ext_resource type="Script" uid="uid://c8wshfpdveddg" path="res://Scripts/spell.gd" id="1_4kiar"]
+[ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="2_lkq0a"]
+
+[node name="circle_spell" type="Node2D" unique_id=1032744867]
+script = ExtResource("1_4kiar")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2081771349]
+texture = ExtResource("2_lkq0a")
