@@ -1,0 +1,19 @@
+[project]
+name = "steelhacks2026"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "hellothere98765", email = "64290251+hellothere98765@users.noreply.github.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "openai>=3.16.2",
+]
+
+[project.scripts]
+steelhacks2026 = "steelhacks2026:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
