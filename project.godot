@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SteelHack2026"
-run/main_scene="uid://d0hggw7tssg3g"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
