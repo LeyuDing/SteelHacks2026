@@ -1,9 +1,17 @@
 [gd_scene format=3 uid="uid://dgu4dvr7a4jan"]
 
 [ext_resource type="Script" uid="uid://cum60occ0fij5" path="res://Scripts/character_body_2d.gd" id="1_cmdk4"]
-[ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="2_o0f8b"]
+[ext_resource type="Texture2D" uid="uid://g77chtxb4oqm" path="res://Assets/wizard/light_wizard_staff.png" id="2_wko77"]
+[ext_resource type="Script" uid="uid://cmwwvycj3kyi1" path="res://Scenes/staff.gd" id="3_pb3n0"]
+[ext_resource type="Texture2D" uid="uid://botj4i71ikm4g" path="res://Assets/wizard/light_wizard_body.png" id="4_ons1q"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ia7du"]
+
+[sub_resource type="Curve2D" id="Curve2D_ia7du"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 577, -322, 0, 0, 0, 0, 580.4171, 1.8427806, 0, 0, 0, 0, 575, 328, 0, 0, 0, 0, -578, 322, 0, 0, 0, 0, -578, -326, 0, 0, 0, 0, 577, -322)
+}
+point_count = 6
 
 [node name="PlayerCharacter" type="CharacterBody2D" unique_id=461456606]
 script = ExtResource("1_cmdk4")
@@ -12,7 +20,26 @@ script = ExtResource("1_cmdk4")
 scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_ia7du")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1924244701]
-texture = ExtResource("2_o0f8b")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1505402013]
+
+[node name="EnemySpawner" type="Path2D" parent="." unique_id=1811066835]
+position = Vector2(3.608283, 5.8134594)
+scale = Vector2(1.1515714, 1.1865443)
+curve = SubResource("Curve2D_ia7du")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="EnemySpawner" unique_id=1412954493]
+position = Vector2(577, -322)
+rotation = 1.5602449
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawner/PathFollow2D" unique_id=481793458]
+
+[node name="Sprite" type="Node2D" parent="." unique_id=355053323]
+
+[node name="Body" type="Sprite2D" parent="Sprite" unique_id=1924244701]
+scale = Vector2(3, 3)
+texture = ExtResource("4_ons1q")
+
+[node name="Staff" type="Sprite2D" parent="Sprite" unique_id=1210407]
+scale = Vector2(3, 3)
+texture = ExtResource("2_wko77")
+script = ExtResource("3_pb3n0")

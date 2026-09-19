@@ -1,12 +1,74 @@
 [gd_scene format=3 uid="uid://d0hggw7tssg3g"]
 
+[ext_resource type="PackedScene" uid="uid://dgu4dvr7a4jan" path="res://Scenes/player_character.tscn" id="1_6l7je"]
 [ext_resource type="Script" uid="uid://dnj22vl2dkl80" path="res://Scripts/main_scene.gd" id="1_jv6wh"]
 [ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="2_jv6wh"]
+[ext_resource type="Script" uid="uid://jhteooycqyun" path="res://Scripts/enemy_spawner.gd" id="3_jv6wh"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x6ack"]
+vertices = PackedVector2Array(1920, 1516.5469, 1919.0703, 1920, -1920, 1920, -1920, -1920, 1920, -1920)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1932, -1931, -1945, 1940, 1929, 1949, 1938, -1943)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ia7du"]
 
 [node name="MainScene" type="Node2D" unique_id=1543140646]
 script = ExtResource("1_jv6wh")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=1050024624]
-modulate = Color(0.9946882, 0.42394814, 3.85046e-07, 1)
-position = Vector2(114, 121)
+[node name="PlayerCharacter" parent="." unique_id=461456606 instance=ExtResource("1_6l7je")]
+
+[node name="EnemyTimer" type="Timer" parent="." unique_id=1259773366]
+wait_time = 2.0
+autostart = true
+script = ExtResource("3_jv6wh")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=966248076]
+navigation_polygon = SubResource("NavigationPolygon_x6ack")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D" unique_id=385608559]
+position = Vector2(2000, 0)
+scale = Vector2(1, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D" unique_id=1985354750]
+scale = Vector2(7, 7)
+shape = SubResource("RectangleShape2D_ia7du")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D" unique_id=1960392594]
 texture = ExtResource("2_jv6wh")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="NavigationRegion2D" unique_id=356256395]
+position = Vector2(-2000, 0)
+scale = Vector2(1, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D2" unique_id=1782209797]
+scale = Vector2(7, 7)
+shape = SubResource("RectangleShape2D_ia7du")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D2" unique_id=285272130]
+texture = ExtResource("2_jv6wh")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="NavigationRegion2D" unique_id=1190042307]
+position = Vector2(0, -2000)
+rotation = 1.5707964
+scale = Vector2(1, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=1794846317]
+scale = Vector2(7, 7)
+shape = SubResource("RectangleShape2D_ia7du")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=8583694]
+texture = ExtResource("2_jv6wh")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="NavigationRegion2D" unique_id=956883194]
+position = Vector2(0, 2000)
+rotation = 1.5707964
+scale = Vector2(1, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D4" unique_id=1083057205]
+scale = Vector2(7, 7)
+shape = SubResource("RectangleShape2D_ia7du")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D4" unique_id=1843304961]
+texture = ExtResource("2_jv6wh")
+
+[connection signal="timeout" from="EnemyTimer" to="EnemyTimer" method="_on_timeout"]

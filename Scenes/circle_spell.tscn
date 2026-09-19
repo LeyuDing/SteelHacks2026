@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="2_lkq0a"]
 
 [node name="circle_spell" type="Node2D" unique_id=1032744867]
+modulate = Color(0.6226018, 0.99999994, 0.4841807, 1)
 script = ExtResource("1_4kiar")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2081771349]
