@@ -31,9 +31,29 @@ var expCap = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	spell1 = {"element" : "lightning",
+			  "damage" : 5.0,
+			  "cooldown" : 1.0, 
+			  "duration" : 0.1, 
+			  "projectile" : false,
+			  "aoe" : "rectangle", 
+			  "origin" : "self", 
+			  "width" : 2.0, 
+			  "height" : 1.0}
+	spell2 = {"element" : "fire",
+			  "damage" : 2.0,
+			  "cooldown" : 5.0, 
+			  "duration" : 0.1, 
+			  "projectile" : true,
+			  "aoe" : "rectangle", 
+			  "origin" : "mouse", 
+			  "width" : 3.0, 
+			  "height" : 3.0}	
+	
 	# Restart the round clock (see Scripts/game_clock.gd) so it doesn't
 	# carry over elapsed time from a previous round.
 	GameClock.reset()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
