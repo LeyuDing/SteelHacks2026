@@ -41,8 +41,8 @@ func _ready() -> void:
 			  "origin" : "self", 
 			  "width" : 2.0, 
 			  "height" : 1.0}
-	spell2 = {"element" : "fire",
-			  "damage" : 0.0,
+	spell2 = {"element" : "lightning",
+			  "damage" : 0.1,
 			  "cooldown" : 5.0, 
 			  "duration" : 5.0, 
 			  "projectile" : true,
