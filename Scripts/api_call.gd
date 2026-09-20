@@ -190,6 +190,11 @@ func ask_internal(current_spells : Array[Dictionary], times_tried : int) -> Dict
 		
 	var http := HTTPRequest.new()
 	add_child(http)
+	# Without this, http defaults to PROCESS_MODE_INHERIT, so it stops
+	# polling (and request_completed below never fires) whenever
+	# get_tree().paused is true - e.g. while the Light Government menu is
+	# open (see main_scene.gd's _open_light_government_menu()).
+	http.process_mode = Node.PROCESS_MODE_ALWAYS
 	http.timeout = 30.0
 	
 	var headers := PackedStringArray([

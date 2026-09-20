@@ -273,7 +273,7 @@ process_mode = 3
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 0.3
+anchor_bottom = 0.12
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_jv6wh")
@@ -284,9 +284,9 @@ stretch_mode = 5
 process_mode = 3
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.3
+anchor_top = 0.12
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 0.22
 offset_left = 40.0
 offset_right = -40.0
 grow_horizontal = 2
@@ -300,13 +300,13 @@ autowrap_mode = 3
 process_mode = 3
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.5
+anchor_top = 0.22
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = 20.0
-offset_right = -40.0
-offset_bottom = -20.0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = -32.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
@@ -314,27 +314,149 @@ alignment = 1
 
 [node name="Option1" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=1036457120]
 process_mode = 3
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(340, 480)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+text_overrun_behavior = 0
+clip_text = false
+autowrap_mode = 3
+alignment = 0
 text = "Option 1"
 
 [node name="Option2" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=420149523]
 process_mode = 3
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(340, 480)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+text_overrun_behavior = 0
+clip_text = false
+autowrap_mode = 3
+alignment = 0
 text = "Option 2"
 
 [node name="Option3" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=1573692399]
 process_mode = 3
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(340, 480)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+text_overrun_behavior = 0
+clip_text = false
+autowrap_mode = 3
+alignment = 0
 text = "Option 3"
+
+[node name="SlotSelectScreen" type="Control" parent="LevelUpMenu/Background" unique_id=138919257]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/SlotSelectScreen" unique_id=1401069284]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.12
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jv6wh")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="InstructionLabel" type="Label" parent="LevelUpMenu/Background/SlotSelectScreen" unique_id=343571836]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.12
+anchor_right = 1.0
+anchor_bottom = 0.22
+offset_left = 40.0
+offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "Which spell should this replace?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SlotOptions" type="HBoxContainer" parent="LevelUpMenu/Background/SlotSelectScreen" unique_id=666783300]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.22
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Slot1" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=1036457121]
+process_mode = 3
+custom_minimum_size = Vector2(240, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text_overrun_behavior = 0
+clip_text = false
+autowrap_mode = 3
+alignment = 0
+text = "Slot 1"
+
+[node name="Slot2" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=420149524]
+process_mode = 3
+custom_minimum_size = Vector2(240, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text_overrun_behavior = 0
+clip_text = false
+autowrap_mode = 3
+alignment = 0
+text = "Slot 2"
+
+[node name="Slot3" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=1573692400]
+process_mode = 3
+custom_minimum_size = Vector2(240, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text_overrun_behavior = 0
+clip_text = false
+autowrap_mode = 3
+alignment = 0
+text = "Slot 3"
+
+[node name="Slot4" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=1573692401]
+process_mode = 3
+custom_minimum_size = Vector2(240, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text_overrun_behavior = 0
+clip_text = false
+autowrap_mode = 3
+alignment = 0
+text = "Slot 4"
 
 [connection signal="timeout" from="EnemyTimer" to="EnemyTimer" method="_on_timeout"]
 [connection signal="text_submitted" from="LevelUpMenu/Background/InputScreen/InputBox" to="LevelUpMenu" method="_on_input_box_text_submitted"]

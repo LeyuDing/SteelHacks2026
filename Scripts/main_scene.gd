@@ -37,6 +37,15 @@ const circleSpell = preload("res://Scenes/circle_spell.tscn")
 func get_dict_of_spells() -> Array[Dictionary]:
 	return [spell1, spell2, spell3, spell4]
 
+# Called by the Light Government menu's slot-select screen once the player
+# picks which slot a newly-chosen spell replaces.
+func set_spell(index: int, spell: Dictionary) -> void:
+	match index:
+		0: spell1 = spell
+		1: spell2 = spell
+		2: spell3 = spell
+		3: spell4 = spell
+
 @export var exp : int = 0
 var expCap = 1
 
