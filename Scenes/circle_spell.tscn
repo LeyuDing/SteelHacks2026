@@ -19,7 +19,7 @@ modulate = Color(1, 1, 1, 0.19607843)
 script = ExtResource("1_4kiar")
 
 [node name="Timer" type="Timer" parent="." unique_id=657437196]
-wait_time = 0.1
+wait_time = 0.5
 autostart = true
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1999633175]

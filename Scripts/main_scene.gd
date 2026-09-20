@@ -42,7 +42,7 @@ func _ready() -> void:
 			  "width" : 2.0, 
 			  "height" : 1.0}
 	spell2 = {"element" : "fire",
-			  "damage" : 1.0,
+			  "damage" : 0.0,
 			  "cooldown" : 5.0, 
 			  "duration" : 5.0, 
 			  "projectile" : true,
@@ -103,6 +103,8 @@ func spell_caster(properties: Dictionary):
 		particle_instance.look_at(get_global_mouse_position() - player.global_position)
 	if properties["aoe"] == "circle":
 		spell_instance = circleSpell.instantiate()
+		spell_instance.look_at(get_global_mouse_position() - player.global_position)
+		particle_instance.look_at(get_global_mouse_position() - player.global_position)
 		
 	#basic attributes
 	spell_instance.element = properties["element"]
