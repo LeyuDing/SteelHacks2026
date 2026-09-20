@@ -38,7 +38,7 @@ scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_m5cyh")
 
 [node name="Timer" type="Timer" parent="." unique_id=907333649]
-wait_time = 0.1
+wait_time = 0.5
 autostart = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1450957881]
