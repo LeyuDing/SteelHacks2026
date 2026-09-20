@@ -5,7 +5,7 @@ const MODEL := "nvidia/nemotron-3.5-lightning"
 
 
 var exchanges: Array[Dictionary] = []
-var default_tries : int = 5
+
 
 func add_exchange(role: String, message: String) -> void:
 	exchanges.append({"role": role, "content": message})
@@ -47,18 +47,10 @@ func user_prompt(s : String) -> String:
 		"user_prompt" : s
 	})
 	
-#TODO
-func backup_default():
-	return {"role": "FAILED FAILED FAILED", "response": "FAILED FAILED FAILED"}
 
-
-func ask_internal(user_message: String, tries : int) -> Dictionary:
-	if(tries <= 0):
-		return {"role": "FAILED FAILED FAILED", "response": "FAILED FAILED FAILED"}
-	
+func ask(user_message: String) -> Dictionary:
 	#Adds user exchange to message log
-	if(tries == 5):
-		add_exchange("user", user_prompt(user_message))
+	add_exchange("user", user_prompt(user_message))
 	
 	var http := HTTPRequest.new()
 	add_child(http)
