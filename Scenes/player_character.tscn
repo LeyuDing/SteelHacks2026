@@ -25,8 +25,8 @@ shape = SubResource("CircleShape2D_ia7du")
 zoom = Vector2(0.3, 0.3)
 
 [node name="EnemySpawner" type="Path2D" parent="." unique_id=1811066835]
-position = Vector2(3.608283, 5.8134594)
-scale = Vector2(1.1515714, 1.1865443)
+position = Vector2(6.3657227, 28.963318)
+scale = Vector2(3.4210474, 3.536697)
 curve = SubResource("Curve2D_ia7du")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="EnemySpawner" unique_id=1412954493]

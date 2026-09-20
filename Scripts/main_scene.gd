@@ -2,6 +2,11 @@ extends Node2D
 
 @onready var player = $PlayerCharacter
 
+@onready var spell1timer = $Spell1Timer
+@onready var spell2timer = $Spell2Timer
+@onready var spell3timer = $Spell3Timer
+@onready var spell4timer = $Spell4Timer
+
 const rectangleSpell = preload("res://Scenes/rectangle_spell.tscn")
 const circleSpell = preload("res://Scenes/circle_spell.tscn")
 
@@ -26,18 +31,18 @@ var expCap = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spell1 = {"element" : "ice",
-			  "damage" : 1.0,
-			  "cooldown" : 5.0, 
-			  "duration" : 10.0, 
+	spell1 = {"element" : "lightning",
+			  "damage" : 5.0,
+			  "cooldown" : 1.0, 
+			  "duration" : 0.1, 
 			  "projectile" : false,
 			  "aoe" : "rectangle", 
 			  "origin" : "self", 
-			  "width" : 10.0, 
+			  "width" : 2.0, 
 			  "height" : 1.0}
 	spell2 = {"element" : "fire",
 			  "damage" : 2.0,
-			  "cooldown" : 1.0, 
+			  "cooldown" : 5.0, 
 			  "duration" : 0.1, 
 			  "projectile" : true,
 			  "aoe" : "rectangle", 
@@ -54,16 +59,28 @@ func _process(delta: float) -> void:
 		expCap = 2 * expCap
 		exp = 0
 	
-	if Input.is_action_just_released("ui_spell1") && spell1 != null:
+	if Input.is_action_just_released("ui_spell1") && \
+	   spell1timer.time_left == 0 && \
+	   spell1 != null:
+		spell1timer.start(spell1["cooldown"])
 		spell_caster(spell1)
 		
-	if Input.is_action_just_released("ui_spell2") && spell2 != null:
+	if Input.is_action_just_released("ui_spell2") && \
+	   spell2timer.time_left == 0 && \
+	   spell2 != null:
+		spell2timer.start(spell2["cooldown"])
 		spell_caster(spell2)
 		
-	if Input.is_action_just_released("ui_spell3") && spell3 != null:
+	if Input.is_action_just_released("ui_spell3") && \
+	   spell3timer.time_left == 0 && \
+	   spell3 != null:
+		spell3timer.start(spell3["cooldown"])
 		spell_caster(spell3)
 		
-	if Input.is_action_just_released("ui_spell4") && spell4 != null:
+	if Input.is_action_just_released("ui_spell4") && \
+	   spell4timer.time_left == 0 && \
+	   spell4 != null:
+		spell4timer.start(spell4["cooldown"])
 		spell_caster(spell4)
 		
 
