@@ -8,13 +8,10 @@
 [ext_resource type="Script" uid="uid://csekesquormvj" path="res://Scripts/spell_cooldown_bar.gd" id="5_cooldownbar"]
 [ext_resource type="Script" uid="uid://cgip03v10cd3t" path="res://Scripts/health_bar.gd" id="6_healthbar"]
 [ext_resource type="Script" uid="uid://cwrtbq3dg7rs5" path="res://Scripts/game_over_screen.gd" id="7_gameover"]
-<<<<<<< Updated upstream
-=======
 [ext_resource type="Texture2D" uid="uid://dr7x7ckrlra8o" path="res://Assets/floors/laundry_floor.png" id="9_m1efj"]
 [ext_resource type="Texture2D" uid="uid://bawuses8fbtjg" path="res://Assets/floors/mattress_firm_floor.png" id="10_drdnd"]
 [ext_resource type="Texture2D" uid="uid://xfmn6mah88mv" path="res://Assets/floors/dollar_floor.png" id="11_ioaeq"]
 [ext_resource type="Texture2D" uid="uid://br8hkubs5811u" path="res://Assets/floors/arcade_floor.png" id="12_7ewk0"]
->>>>>>> Stashed changes
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x6ack"]
 vertices = PackedVector2Array(1920, 1516.5469, 1919.0703, 1920, -1920, 1920, -1920, -1920, 1920, -1920)
@@ -28,32 +25,32 @@ script = ExtResource("1_jv6wh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1244013232]
 texture_repeat = 2
-position = Vector2(-3800, -3800)
-scale = Vector2(4, 4)
+position = Vector2(-1922, -1922)
+scale = Vector2(2.0231578, 2.0231578)
 texture = ExtResource("9_m1efj")
 region_enabled = true
 region_rect = Rect2(0, 0, 1900, 1900)
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=531737070]
 texture_repeat = 2
-position = Vector2(3800, -3800)
-scale = Vector2(4, 4)
+position = Vector2(1933.0001, -1930.0001)
+scale = Vector2(2.03, 2.03)
 texture = ExtResource("10_drdnd")
 region_enabled = true
 region_rect = Rect2(0, 0, 1900, 1900)
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1377370558]
 texture_repeat = 2
-position = Vector2(3800, 3800)
-scale = Vector2(4, 4)
+position = Vector2(1931.5, 1936)
+scale = Vector2(2.0331578, 2.0378947)
 texture = ExtResource("11_ioaeq")
 region_enabled = true
 region_rect = Rect2(0, 0, 1900, 1900)
 
 [node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1259191570]
 texture_repeat = 2
-position = Vector2(-3800, 3800)
-scale = Vector2(4, 4)
+position = Vector2(-1918.5, 1917.5)
+scale = Vector2(2.0194738, 2.018421)
 texture = ExtResource("12_7ewk0")
 region_enabled = true
 region_rect = Rect2(0, 0, 1900, 1900)
@@ -65,15 +62,9 @@ wait_time = 5.0
 autostart = true
 script = ExtResource("3_jv6wh")
 
-<<<<<<< Updated upstream
 [node name="UI" type="CanvasLayer" parent="." unique_id=2143499499]
 
 [node name="ClockLabel" type="Label" parent="UI" unique_id=1843835145]
-=======
-[node name="UI" type="CanvasLayer" parent="." unique_id=1634062129]
-
-[node name="ClockLabel" type="Label" parent="UI" unique_id=194542364]
->>>>>>> Stashed changes
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -87,38 +78,26 @@ text = "00:00"
 horizontal_alignment = 1
 script = ExtResource("4_clock")
 
-<<<<<<< Updated upstream
 [node name="SpellCooldownBar" type="Control" parent="UI" unique_id=232840574]
-=======
-[node name="SpellCooldownBar" type="Control" parent="UI" unique_id=547759331]
->>>>>>> Stashed changes
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("5_cooldownbar")
 bottom_margin = 68.0
 
-<<<<<<< Updated upstream
 [node name="HealthBar" type="Control" parent="UI" unique_id=928010644]
-=======
-[node name="HealthBar" type="Control" parent="UI" unique_id=1677200450]
->>>>>>> Stashed changes
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("6_healthbar")
 
-<<<<<<< Updated upstream
 [node name="ProgressBar" type="ProgressBar" parent="UI" unique_id=1007994789]
 offset_right = 4.0
 offset_bottom = 27.0
 
 [node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=2088504416]
-=======
-[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=1617988036]
->>>>>>> Stashed changes
 script = ExtResource("7_gameover")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=966248076]
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 navigation_polygon = SubResource("NavigationPolygon_x6ack")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D" unique_id=385608559]

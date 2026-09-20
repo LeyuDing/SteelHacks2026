@@ -22,10 +22,10 @@ const particle = preload("res://Scenes/particle.tscn")
 #  "width" : float,
 #  "height" : float}
 
-@export var spell1 = null
-@export var spell2 = null
-@export var spell3 = null
-@export var spell4 = null
+@export var spell1 = {}
+@export var spell2 = {}
+@export var spell3 = {}
+@export var spell4 = {}
 
 @export var exp : int = 0
 var expCap = 1
@@ -66,25 +66,25 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_released("ui_spell1") && \
 	   spell1timer.time_left == 0 && \
-	   spell1 != null:
+	   spell1 != {}:
 		spell1timer.start(spell1["cooldown"])
 		spell_caster(spell1)
 		
 	if Input.is_action_just_released("ui_spell2") && \
 	   spell2timer.time_left == 0 && \
-	   spell2 != null:
+	   spell2 != {}:
 		spell2timer.start(spell2["cooldown"])
 		spell_caster(spell2)
 		
 	if Input.is_action_just_released("ui_spell3") && \
 	   spell3timer.time_left == 0 && \
-	   spell3 != null:
+	   spell3 != {}:
 		spell3timer.start(spell3["cooldown"])
 		spell_caster(spell3)
 		
 	if Input.is_action_just_released("ui_spell4") && \
 	   spell4timer.time_left == 0 && \
-	   spell4 != null:
+	   spell4 != {}:
 		spell4timer.start(spell4["cooldown"])
 		spell_caster(spell4)
 		
