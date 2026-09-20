@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://do8le44l8j2q1"]
 
 [ext_resource type="Script" uid="uid://mwwx0qk8v44b" path="res://Scripts/attack.gd" id="1_ht1lw"]
-[ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="1_ij4ji"]
+[ext_resource type="Texture2D" uid="uid://d0sfp3e5xb10h" path="res://Assets/fist.png" id="2_ht1lw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ia7du"]
 
@@ -19,5 +19,6 @@ scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_ia7du")
 
 [node name="Attack" type="Sprite2D" parent="." unique_id=178992816]
-position = Vector2(64, 0)
-texture = ExtResource("1_ij4ji")
+position = Vector2(80, 0)
+scale = Vector2(3, 4.2)
+texture = ExtResource("2_ht1lw")
