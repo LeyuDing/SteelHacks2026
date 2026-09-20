@@ -44,7 +44,7 @@ func _ready() -> void:
 	spell2 = {"element" : "lightning",
 			  "damage" : 0.1,
 			  "cooldown" : 5.0, 
-			  "duration" : 5.0, 
+			  "duration" : 1.0, 
 			  "projectile" : true,
 			  "aoe" : "circle", 
 			  "origin" : "mouse", 

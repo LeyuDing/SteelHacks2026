@@ -63,5 +63,8 @@ randomness = 1.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_ia7du")
 
+[node name="StunTimer" type="Timer" parent="." unique_id=466693838]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="StatusTimer" to="." method="_on_status_timer_timeout"]

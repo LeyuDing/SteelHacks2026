@@ -1,17 +1,17 @@
 extends CharacterBody2D
 
-@export var SPEED : float = 300.0
+@export var SPEED : float = 500.0
 
 @export var HP : float = 10.0
 
 @export var burn : float = 0.0
 @export var freeze : float = 0.0
-@export var stun : bool = false
 
 @onready var player =  get_parent().get_parent().get_node("PlayerCharacter")
 @onready var navAgent = $NavigationAgent2D
 @onready var AttackTimer = $AttackTimer
 @onready var StatusTimer = $StatusTimer
+@onready var StunTimer = $StunTimer
 @onready var attack = preload("res://Scenes/attack.tscn")
 @onready var burnParticles = $Burn
 @onready var freezeParticles = $Freeze
@@ -20,8 +20,8 @@ const exp = preload("res://Scenes/exp_drop.tscn")
 
 func _ready():
 	$Sprite2D.material = $Sprite2D.material.duplicate()
-	SPEED *= GameClock.elapsed_time/10.0
-	HP *= GameClock.elapsed_time/10.0
+	#SPEED *= GameClock.elapsed_time/20.0
+	HP *= GameClock.elapsed_time/20.0
 	make_path()
 
 func _physics_process(delta: float) -> void:
@@ -37,10 +37,10 @@ func _physics_process(delta: float) -> void:
 	if (freeze != 0):
 		if (!freezeParticles.visible): freezeParticles.visible = true
 		
-	if (stun): 
+	if (StunTimer.time_left != 0): 
+		velocity = Vector2.ZERO 
 		flash_white()
-		await get_tree().create_timer(1.0).timeout
-		stun = false
+		return
 		
 	
 	var distance_to_player = global_position.distance_to(player.global_position)
@@ -61,6 +61,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func make_path():
+	if (StunTimer.time_left != 0):
+		return
 	navAgent.target_position = player.global_position
 	
 func take_damage(damage : int, element : String):
@@ -69,7 +71,7 @@ func take_damage(damage : int, element : String):
 	if element == "fire": burn += 2
 	if element == "ice": freeze += 5
 	if element == "lightning": 
-		stun = true
+		StunTimer.start(1.0)
 		velocity = Vector2.ZERO
 	
 func attack_player():
@@ -95,7 +97,6 @@ func flash_red():
 	$Sprite2D.material.set_shader_parameter("flash_modifier", 0.0)
 
 func _on_timer_timeout() -> void:	
-	if (stun): return
 	make_path()
 
 func _on_status_timer_timeout() -> void:
