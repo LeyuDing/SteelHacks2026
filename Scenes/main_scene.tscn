@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bawuses8fbtjg" path="res://Assets/floors/mattress_firm_floor.png" id="10_drdnd"]
 [ext_resource type="Texture2D" uid="uid://xfmn6mah88mv" path="res://Assets/floors/dollar_floor.png" id="11_ioaeq"]
 [ext_resource type="Texture2D" uid="uid://br8hkubs5811u" path="res://Assets/floors/arcade_floor.png" id="12_7ewk0"]
+[ext_resource type="Texture2D" uid="uid://cccs5kxto2gvk" path="res://Assets/walls/laundry_wall.png" id="13_7ewk0"]
+[ext_resource type="Texture2D" uid="uid://k6o18u21fhyh" path="res://Assets/walls/mattress_firm_wall.png" id="14_lhp3t"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x6ack"]
 vertices = PackedVector2Array(1920, 1516.5469, 1919.0703, 1920, -1920, 1920, -1920, -1920, 1920, -1920)
@@ -101,8 +103,9 @@ scale = Vector2(2, 2)
 navigation_polygon = SubResource("NavigationPolygon_x6ack")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D" unique_id=385608559]
-position = Vector2(2000, 0)
-scale = Vector2(1, 50)
+visible = false
+position = Vector2(3209, -86.50001)
+scale = Vector2(20, 50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D" unique_id=1985354750]
 scale = Vector2(7, 7)
@@ -120,19 +123,42 @@ scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_ia7du")
 
 [node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D2" unique_id=285272130]
-texture = ExtResource("2_jv6wh")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="NavigationRegion2D" unique_id=1190042307]
-position = Vector2(0, -2000)
-rotation = 1.5707964
+[node name="StaticBody2D3" type="StaticBody2D" parent="NavigationRegion2D" unique_id=263844216]
+position = Vector2(1998, 7)
 scale = Vector2(1, 50)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=1794846317]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=1515604910]
 scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_ia7du")
 
-[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=8583694]
-texture = ExtResource("2_jv6wh")
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=865737780]
+
+[node name="LaundryWall" type="StaticBody2D" parent="NavigationRegion2D" unique_id=1190042307]
+position = Vector2(-965.5, -1954.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/LaundryWall" unique_id=1794846317]
+scale = Vector2(120, 4)
+shape = SubResource("RectangleShape2D_ia7du")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/LaundryWall" unique_id=8583694]
+texture_repeat = 2
+texture = ExtResource("13_7ewk0")
+region_enabled = true
+region_rect = Rect2(0, 0, 1930, 64)
+
+[node name="MatressWall" type="StaticBody2D" parent="NavigationRegion2D" unique_id=1577926417]
+position = Vector2(965, -1954.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/MatressWall" unique_id=459401870]
+scale = Vector2(120, 4)
+shape = SubResource("RectangleShape2D_ia7du")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/MatressWall" unique_id=125949480]
+texture_repeat = 2
+texture = ExtResource("14_lhp3t")
+region_enabled = true
+region_rect = Rect2(0, 0, 1930, 64)
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="NavigationRegion2D" unique_id=956883194]
 position = Vector2(0, 2000)
@@ -144,7 +170,6 @@ scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_ia7du")
 
 [node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D4" unique_id=1843304961]
-texture = ExtResource("2_jv6wh")
 
 [node name="Spell1Timer" type="Timer" parent="." unique_id=758584175]
 one_shot = true
