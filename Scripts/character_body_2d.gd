@@ -13,9 +13,10 @@ func _onready():
 
 func _physics_process(delta: float) -> void:
 	
-	if (HP == 0):
-		get_tree().paused = true
-	elif HP < max_HP:
+	# HP hitting 0 is handled by Scripts/game_over_screen.gd, which plays a
+	# fade-to-black death sequence and pauses the tree once it finishes -
+	# no instant pause here.
+	if HP > 0.0 and HP < max_HP:
 		HP = min(HP + health_regen_rate * delta, max_HP)
 
 	# Get the input direction and handle the movement/deceleration.
