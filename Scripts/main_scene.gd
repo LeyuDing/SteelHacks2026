@@ -58,8 +58,8 @@ var pending_level_ups : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spell1 = {"name" : "Ice Comet",
-			  "description" : "Ice em up",	
+	spell1 = {"name" : "Ice Punch",
+			  "description" : "Gonna Ice them",	
 			  "element" : "ice",
 			  "damage" : 5.0,
 			  "cooldown" : 1.0, 
@@ -67,19 +67,19 @@ func _ready() -> void:
 			  "projectile" : false,
 			  "aoe" : "rectangle", 
 			  "origin" : "self", 
-			  "width" : 2.0, 
-			  "height" : 1.0}
-	spell2 = {"name" : "Lightning rocket",
-			  "description" : "Lightning blast",
-			  "element" : "lightning",
+			  "width" : 4.0, 
+			  "height" : 2.0}
+	spell2 = {"name" : "Napalm money",
+			  "description" : "Converted my hundos to ones to get these guys",
+			  "element" : "fire",
 			  "damage" : 0.1,
-			  "cooldown" : 5.0, 
-			  "duration" : 1.0, 
+			  "cooldown" : 4.0, 
+			  "duration" : 5.0, 
 			  "projectile" : true,
 			  "aoe" : "circle", 
 			  "origin" : "mouse", 
-			  "width" : 3.0, 
-			  "height" : 10.0}	
+			  "width" : 5.0, 
+			  "height" : 7.0}	
 	
 	# Restart the round clock (see Scripts/game_clock.gd) so it doesn't
 	# carry over elapsed time from a previous round.
