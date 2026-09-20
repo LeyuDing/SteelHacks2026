@@ -3,11 +3,16 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 
+@export var HP = 10.0
+
 func _onready():
 	# Makes the camera attach to the player the main one
 	$Camera2D.make_current()
 
 func _physics_process(delta: float) -> void:
+	
+	if (HP == 0):
+		get_tree().paused = true
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -22,3 +27,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
+	
+func take_damage(damage : int):
+	HP -= damage
