@@ -20,6 +20,8 @@ const exp = preload("res://Scenes/exp_drop.tscn")
 
 func _ready():
 	$Sprite2D.material = $Sprite2D.material.duplicate()
+	SPEED *= GameClock.elapsed_time/10.0
+	HP *= GameClock.elapsed_time/10.0
 	make_path()
 
 func _physics_process(delta: float) -> void:
@@ -66,7 +68,9 @@ func take_damage(damage : int, element : String):
 	HP -= damage
 	if element == "fire": burn += 2
 	if element == "ice": freeze += 5
-	if element == "lightning": stun = true
+	if element == "lightning": 
+		stun = true
+		velocity = Vector2.ZERO
 	
 func attack_player():
 	AttackTimer.start(1)
@@ -91,6 +95,7 @@ func flash_red():
 	$Sprite2D.material.set_shader_parameter("flash_modifier", 0.0)
 
 func _on_timer_timeout() -> void:	
+	if (stun): return
 	make_path()
 
 func _on_status_timer_timeout() -> void:

@@ -58,7 +58,7 @@ region_rect = Rect2(0, 0, 1900, 1900)
 [node name="PlayerCharacter" parent="." unique_id=461456606 instance=ExtResource("1_6l7je")]
 
 [node name="EnemyTimer" type="Timer" parent="." unique_id=1259773366]
-wait_time = 5.0
+wait_time = 2.5
 autostart = true
 script = ExtResource("3_jv6wh")
 
