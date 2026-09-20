@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dnj22vl2dkl80" path="res://Scripts/main_scene.gd" id="1_jv6wh"]
 [ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="2_jv6wh"]
 [ext_resource type="Script" uid="uid://jhteooycqyun" path="res://Scripts/enemy_spawner.gd" id="3_jv6wh"]
+[ext_resource type="Script" path="res://Scripts/clock_display.gd" id="4_clock"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x6ack"]
 vertices = PackedVector2Array(1920, 1516.5469, 1919.0703, 1920, -1920, 1920, -1920, -1920, 1920, -1920)
@@ -18,9 +19,25 @@ script = ExtResource("1_jv6wh")
 [node name="PlayerCharacter" parent="." unique_id=461456606 instance=ExtResource("1_6l7je")]
 
 [node name="EnemyTimer" type="Timer" parent="." unique_id=1259773366]
-wait_time = 2.0
+wait_time = 5.0
 autostart = true
 script = ExtResource("3_jv6wh")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ClockLabel" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 12.0
+offset_right = 60.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 28
+text = "00:00"
+horizontal_alignment = 1
+script = ExtResource("4_clock")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=966248076]
 navigation_polygon = SubResource("NavigationPolygon_x6ack")

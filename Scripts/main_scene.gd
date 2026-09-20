@@ -18,8 +18,10 @@ const circleSpell = preload("res://Scenes/circle_spell.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-	
+	# Restart the round clock (see Scripts/game_clock.gd) so it doesn't
+	# carry over elapsed time from a previous round.
+	GameClock.reset()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
