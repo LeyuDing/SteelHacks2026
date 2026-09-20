@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://bt0ybla7oefsd"]
 
-[ext_resource type="Script" path="res://Scripts/spawn_marker.gd" id="1_marker"]
-[ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="2_marker"]
+[ext_resource type="Script" uid="uid://5wxhl2bfymn8" path="res://Scripts/spawn_marker.gd" id="1_marker"]
+[ext_resource type="Texture2D" uid="uid://dvh44wtlj7uc3" path="res://Assets/wizard/spawner_mana.png" id="2_m1ww3"]
 
-[node name="SpawnMarker" type="Node2D"]
+[node name="SpawnMarker" type="Node2D" unique_id=1042570428]
 script = ExtResource("1_marker")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=561086822]
 modulate = Color(1, 0.25, 0.15, 0.75)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_marker")
+scale = Vector2(0.22856751, 0.22279271)
+texture = ExtResource("2_m1ww3")

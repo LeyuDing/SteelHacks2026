@@ -12,6 +12,12 @@ extends Timer
 const enemy = preload("res://Scenes/test_enemy.tscn")
 const spawnMarker = preload("res://Scenes/spawn_marker.tscn")
 
+const wizard1 = preload("res://Assets/wizard/shadow_wizard.png")
+const wizard2 = preload("res://Assets/wizard/shadow_wiz_green.png") 
+const wizard3 = preload("res://Assets/wizard/shadow_wiz_purple.png")
+const wizard4 = preload("res://Assets/wizard/shadow_wiz_red.png")
+const wizard5 = preload("res://Assets/wizard/shadow_wiz_yellow.png")
+
 # How long a spawn point is telegraphed before the enemy appears.
 @export var spawn_delay : float = 3.0
 
@@ -67,5 +73,8 @@ func queue_spawn() -> void:
 
 func _spawn_enemy(spawn_position: Vector2) -> void:
 	var instance = enemy.instantiate()
+	var enemyTexture = instance.get_node("Sprite2D")
+	var wizard = [wizard1, wizard2, wizard3, wizard4, wizard5]
+	enemyTexture.texture = wizard.pick_random()
 	instance.global_position = spawn_position
 	add_child(instance)

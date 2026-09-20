@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://h6x6sjpq64nw"]
 
-[ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="1_8utff"]
-[ext_resource type="Script" uid="uid://255jqfe438ae" path="res://Scenes/exp_drop.gd" id="2_i8c68"]
+[ext_resource type="Texture2D" uid="uid://cpml4fy76ejcw" path="res://Assets/mana_bar/mana_dollar.png" id="1_i8c68"]
+[ext_resource type="Script" uid="uid://255jqfe438ae" path="res://Scripts/exp_drop.gd" id="2_i8c68"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ia7du"]
 
 [node name="ExpDrop" type="Sprite2D" unique_id=2096529015]
-texture = ExtResource("1_8utff")
+texture = ExtResource("1_i8c68")
 script = ExtResource("2_i8c68")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=645468695]

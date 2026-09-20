@@ -1,20 +1,14 @@
 [gd_scene format=3 uid="uid://cclhkjabp465e"]
 
 [ext_resource type="Script" uid="uid://c8wshfpdveddg" path="res://Scripts/spell.gd" id="1_7t21j"]
-[ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="1_eovn4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5cyh"]
 
 [node name="RectangleSpell" type="Node2D" unique_id=426429013]
-modulate = Color(0.19210741, 0.57142806, 0.9999998, 1)
+modulate = Color(1, 1, 1, 0.19607843)
 script = ExtResource("1_7t21j")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=70735943]
-position = Vector2(64, -4)
-texture = ExtResource("1_eovn4")
-
 [node name="Area2D" type="Area2D" parent="." unique_id=991142040]
-position = Vector2(64, -4)
 collision_layer = 0
 collision_mask = 4
 
@@ -23,8 +17,14 @@ scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_m5cyh")
 
 [node name="Timer" type="Timer" parent="." unique_id=907333649]
-wait_time = 0.1
+wait_time = 0.5
 autostart = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=568287204]
+offset_left = -69.0
+offset_top = -70.0
+offset_right = 70.0
+offset_bottom = 71.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

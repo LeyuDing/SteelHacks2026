@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca3y7wy0jbynd"
-path="res://.godot/imported/pixil-frame-0 (2).png-3e453401dd9b296c99af6257086f9786.ctex"
+uid="uid://cpml4fy76ejcw"
+path="res://.godot/imported/mana_dollar.png-8df5cd072b0cb002e7a09306028ed391.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/walls/pixil-frame-0 (2).png"
-dest_files=["res://.godot/imported/pixil-frame-0 (2).png-3e453401dd9b296c99af6257086f9786.ctex"]
+source_file="res://Assets/mana_bar/mana_dollar.png"
+dest_files=["res://.godot/imported/mana_dollar.png-8df5cd072b0cb002e7a09306028ed391.ctex"]
 
 [params]
 

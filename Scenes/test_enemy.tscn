@@ -1,13 +1,26 @@
 [gd_scene format=3 uid="uid://bwacg5k2wg75x"]
 
 [ext_resource type="Script" uid="uid://bfrdlo5ful057" path="res://Scripts/test_enemy.gd" id="1_bs22l"]
-[ext_resource type="Texture2D" uid="uid://bm4sshy325wyf" path="res://Assets/wizard/shadow_wiz_red.png" id="2_bs22l"]
+[ext_resource type="Shader" uid="uid://dsreowap1t37" path="res://Scenes/test_enemy.gdshader" id="2_5b80j"]
+[ext_resource type="Texture2D" uid="uid://bmglb5vg11ohv" path="res://Assets/wizard/shadow_wiz_red.png" id="2_bs22l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ia7du"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ia7du"]
+shader = ExtResource("2_5b80j")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ia7du"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, -98, 0)
+scale_min = 20.0
+scale_max = 40.0
+
 [node name="TestEnemy" type="CharacterBody2D" unique_id=273263959]
 collision_layer = 5
-collision_mask = 3
 script = ExtResource("1_bs22l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=474630602]
@@ -15,6 +28,7 @@ scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_ia7du")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2084111486]
+material = SubResource("ShaderMaterial_ia7du")
 scale = Vector2(3, 3)
 texture = ExtResource("2_bs22l")
 
@@ -24,4 +38,30 @@ texture = ExtResource("2_bs22l")
 wait_time = 0.1
 autostart = true
 
+[node name="AttackTimer" type="Timer" parent="." unique_id=1053247124]
+one_shot = true
+autostart = true
+
+[node name="StatusTimer" type="Timer" parent="." unique_id=351676975]
+autostart = true
+
+[node name="Burn" type="GPUParticles2D" parent="." unique_id=777778223]
+visible = false
+modulate = Color(1, 0, 0, 1)
+position = Vector2(0, 60)
+lifetime = 2.0
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ia7du")
+
+[node name="Freeze" type="GPUParticles2D" parent="." unique_id=1975597951]
+visible = false
+modulate = Color(0, 0.4627451, 0.8666667, 1)
+position = Vector2(0, 60)
+lifetime = 2.0
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ia7du")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="StatusTimer" to="." method="_on_status_timer_timeout"]

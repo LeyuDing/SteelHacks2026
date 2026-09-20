@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://cepx7xjnlyxk3" path="res://Scripts/clock_display.gd" id="4_clock"]
 [ext_resource type="Script" uid="uid://sqoahls6ee5d" path="res://Scripts/level_bar.gd" id="5_levelbar"]
 [ext_resource type="Script" uid="uid://bmpfhc20snq5s" path="res://Scripts/light_government_menu.gd" id="6_lightgov"]
+[ext_resource type="Script" path="res://Scripts/spell_cooldown_bar.gd" id="5_cooldownbar"]
+[ext_resource type="Script" path="res://Scripts/health_bar.gd" id="6_healthbar"]
+[ext_resource type="Script" path="res://Scripts/game_over_screen.gd" id="7_gameover"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_levelbar_frame"]
 bg_color = Color(0.1, 0.1, 0.15, 0.55)
@@ -107,6 +110,16 @@ theme_override_font_sizes/font_size = 28
 text = "Press F to call the Light Government"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SpellCooldownBar" type="Control" parent="UI"]
+script = ExtResource("5_cooldownbar")
+bottom_margin = 68.0
+
+[node name="HealthBar" type="Control" parent="UI"]
+script = ExtResource("6_healthbar")
+
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+script = ExtResource("7_gameover")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=966248076]
 navigation_polygon = SubResource("NavigationPolygon_x6ack")
