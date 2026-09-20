@@ -7,6 +7,11 @@
 [ext_resource type="Script" uid="uid://cepx7xjnlyxk3" path="res://Scripts/clock_display.gd" id="4_clock"]
 [ext_resource type="Script" uid="uid://csekesquormvj" path="res://Scripts/spell_cooldown_bar.gd" id="5_cooldownbar"]
 [ext_resource type="Script" uid="uid://cgip03v10cd3t" path="res://Scripts/health_bar.gd" id="6_healthbar"]
+[ext_resource type="Script" uid="uid://bmpfhc20snq5s" path="res://Scripts/light_government_menu.gd" id="6_lightgov"]
+[ext_resource type="Texture2D" uid="uid://mbq7ijmt1d02" path="res://Assets/mana_bar/fullbar.png" id="7_drdnd"]
+[ext_resource type="Script" uid="uid://cwrtbq3dg7rs5" path="res://Scripts/game_over_screen.gd" id="7_gameover"]
+[ext_resource type="Script" uid="uid://il2mw54lx4xs" path="res://Scenes/texture_progress_bar.gd" id="8_ioaeq"]
+[ext_resource type="Texture2D" uid="uid://bd0c7bxy5c1le" path="res://Assets/doyle/regular_doyle.png" id="10_mai8y"]
 [ext_resource type="Script" uid="uid://cwrtbq3dg7rs5" path="res://Scripts/game_over_screen.gd" id="7_gameover"]
 [ext_resource type="Texture2D" uid="uid://dr7x7ckrlra8o" path="res://Assets/floors/laundry_floor.png" id="9_m1efj"]
 [ext_resource type="Texture2D" uid="uid://bawuses8fbtjg" path="res://Assets/floors/mattress_firm_floor.png" id="10_drdnd"]
@@ -64,9 +69,11 @@ wait_time = 2.5
 autostart = true
 script = ExtResource("3_jv6wh")
 
-[node name="UI" type="CanvasLayer" parent="." unique_id=2143499499]
 
-[node name="ClockLabel" type="Label" parent="UI" unique_id=1843835145]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1240505914]
+
+[node name="ClockLabel" type="Label" parent="UI" unique_id=2032481570]
+
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -80,22 +87,51 @@ text = "00:00"
 horizontal_alignment = 1
 script = ExtResource("4_clock")
 
-[node name="SpellCooldownBar" type="Control" parent="UI" unique_id=232840574]
+[node name="LevelUpPrompt" type="Label" parent="UI" unique_id=1594495963]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -60.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Press F to call the Light Government"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpellCooldownBar" type="Control" parent="UI" unique_id=438304772]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("5_cooldownbar")
 bottom_margin = 68.0
 
-[node name="HealthBar" type="Control" parent="UI" unique_id=928010644]
+[node name="HealthBar" type="Control" parent="UI" unique_id=905936081]
+
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("6_healthbar")
 
-[node name="ProgressBar" type="ProgressBar" parent="UI" unique_id=1007994789]
-offset_right = 4.0
-offset_bottom = 27.0
 
-[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=2088504416]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=664507344]
+anchors_preset = -1
+anchor_left = 0.051000003
+anchor_top = 0.499
+anchor_right = 0.051000003
+anchor_bottom = 0.499
+offset_left = -34.752003
+offset_top = -258.35202
+offset_right = 35.247997
+offset_bottom = 430.98135
+scale = Vector2(1, 0.75)
+fill_mode = 3
+texture_progress = ExtResource("7_drdnd")
+script = ExtResource("8_ioaeq")
+
+[node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=231643533]
+
 script = ExtResource("7_gameover")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=966248076]
@@ -183,4 +219,284 @@ one_shot = true
 [node name="Spell4Timer" type="Timer" parent="." unique_id=1128208693]
 one_shot = true
 
+[node name="LevelUpMenu" type="CanvasLayer" parent="." unique_id=2121481011]
+process_mode = 3
+layer = 10
+script = ExtResource("6_lightgov")
+
+[node name="Background" type="ColorRect" parent="LevelUpMenu" unique_id=1760387183]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="InputScreen" type="Control" parent="LevelUpMenu/Background" unique_id=475820079]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/InputScreen" unique_id=40879156]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 799.0
+offset_top = -170.0
+offset_right = 24.0
+offset_bottom = 484.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_mai8y")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="InputBox" type="LineEdit" parent="LevelUpMenu/Background/InputScreen" unique_id=503430453]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = 40.0
+offset_right = -120.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Type your request to the Light Government..."
+
+[node name="WaitingScreen" type="Control" parent="LevelUpMenu/Background" unique_id=1932036016]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/WaitingScreen" unique_id=1034435511]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_mai8y")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="WaitingLabel" type="Label" parent="LevelUpMenu/Background/WaitingScreen" unique_id=1459095762]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 40.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Waiting..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResponseScreen" type="Control" parent="LevelUpMenu/Background" unique_id=138919256]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/ResponseScreen" unique_id=1401069283]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.12
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_mai8y")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="ResponseText" type="Label" parent="LevelUpMenu/Background/ResponseScreen" unique_id=343571835]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.12
+anchor_right = 1.0
+anchor_bottom = 0.22
+offset_left = 40.0
+offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SpellOptions" type="HBoxContainer" parent="LevelUpMenu/Background/ResponseScreen" unique_id=666783299]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.22
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 16.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Option1" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=1036457120]
+process_mode = 3
+custom_minimum_size = Vector2(340, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+text = "Option 1"
+alignment = 0
+autowrap_mode = 3
+
+[node name="Option2" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=420149523]
+process_mode = 3
+custom_minimum_size = Vector2(340, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+text = "Option 2"
+alignment = 0
+autowrap_mode = 3
+
+[node name="Option3" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=1573692399]
+process_mode = 3
+custom_minimum_size = Vector2(340, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 16
+text = "Option 3"
+alignment = 0
+autowrap_mode = 3
+
+[node name="SlotSelectScreen" type="Control" parent="LevelUpMenu/Background" unique_id=138919257]
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/SlotSelectScreen" unique_id=1401069284]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.12
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_mai8y")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="InstructionLabel" type="Label" parent="LevelUpMenu/Background/SlotSelectScreen" unique_id=343571836]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.12
+anchor_right = 1.0
+anchor_bottom = 0.22
+offset_left = 40.0
+offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "Which spell should this replace?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SlotOptions" type="HBoxContainer" parent="LevelUpMenu/Background/SlotSelectScreen" unique_id=666783300]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.22
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Slot1" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=1036457121]
+process_mode = 3
+custom_minimum_size = Vector2(240, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text = "Slot 1"
+alignment = 0
+autowrap_mode = 3
+
+[node name="Slot2" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=420149524]
+process_mode = 3
+custom_minimum_size = Vector2(240, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text = "Slot 2"
+alignment = 0
+autowrap_mode = 3
+
+[node name="Slot3" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=1573692400]
+process_mode = 3
+custom_minimum_size = Vector2(240, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text = "Slot 3"
+alignment = 0
+autowrap_mode = 3
+
+[node name="Slot4" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=1573692401]
+process_mode = 3
+custom_minimum_size = Vector2(240, 480)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 15
+text = "Slot 4"
+alignment = 0
+autowrap_mode = 3
+
 [connection signal="timeout" from="EnemyTimer" to="EnemyTimer" method="_on_timeout"]
+[connection signal="text_submitted" from="LevelUpMenu/Background/InputScreen/InputBox" to="LevelUpMenu" method="_on_input_box_text_submitted"]

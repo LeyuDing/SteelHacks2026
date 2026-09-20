@@ -7,6 +7,14 @@ extends Node2D
 @onready var spell3timer = $Spell3Timer
 @onready var spell4timer = $Spell4Timer
 
+@onready var level_up_prompt = $UI/LevelUpPrompt
+@onready var light_government_menu = $LevelUpMenu
+
+# How long the "Press F..." prompt stays visible/hidden per blink, so a full
+# on+off cycle takes 2 seconds (see the task: "flashes once every two
+# seconds").
+const PROMPT_FLASH_PERIOD : float = 2.0
+
 const rectangleSpell = preload("res://Scenes/rectangle_spell.tscn")
 const circleSpell = preload("res://Scenes/circle_spell.tscn")
 const particle = preload("res://Scenes/particle.tscn")
@@ -27,12 +35,32 @@ const particle = preload("res://Scenes/particle.tscn")
 @export var spell3 = {}
 @export var spell4 = {}
 
+func get_dict_of_spells() -> Array[Dictionary]:
+	return [spell1, spell2, spell3, spell4]
+
+# Called by the Light Government menu's slot-select screen once the player
+# picks which slot a newly-chosen spell replaces.
+func set_spell(index: int, spell: Dictionary) -> void:
+	match index:
+		0: spell1 = spell
+		1: spell2 = spell
+		2: spell3 = spell
+		3: spell4 = spell
+
+
 @export var exp : int = 0
-var expCap = 1
+@export var expCap : int = 1
+
+# Levels the player has earned but not yet spent on an upgrade. Incremented
+# whenever exp fills expCap; only decremented once the Light Government menu
+# resolves a level (see _on_light_government_menu_resolved()).
+var pending_level_ups : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spell1 = {"element" : "ice",
+	spell1 = {"name" : "Ice Comet",
+			  "description" : "Ice em up",	
+			  "element" : "ice",
 			  "damage" : 5.0,
 			  "cooldown" : 1.0, 
 			  "duration" : 0.1, 
@@ -41,7 +69,9 @@ func _ready() -> void:
 			  "origin" : "self", 
 			  "width" : 2.0, 
 			  "height" : 1.0}
-	spell2 = {"element" : "lightning",
+	spell2 = {"name" : "Lightning rocket",
+			  "description" : "Lightning blast",
+			  "element" : "lightning",
 			  "damage" : 0.1,
 			  "cooldown" : 5.0, 
 			  "duration" : 1.0, 
@@ -54,16 +84,21 @@ func _ready() -> void:
 	# Restart the round clock (see Scripts/game_clock.gd) so it doesn't
 	# carry over elapsed time from a previous round.
 	GameClock.reset()
-	
+
+	level_up_prompt.visible = false
+	light_government_menu.resolved.connect(_on_light_government_menu_resolved)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+
 	if exp >= expCap:
-		print("level up")
+		pending_level_ups += 1
 		expCap = 2 * expCap
 		exp = 0
-	
+
+	_update_level_up_prompt()
+
 	if Input.is_action_just_released("ui_spell1") && \
 	   spell1timer.time_left == 0 && \
 	   spell1 != {}:
@@ -128,12 +163,12 @@ func spell_caster(properties: Dictionary):
 	if properties["origin"] == "mouse":
 		spell_instance.position = get_global_mouse_position()
 		particle_instance.position = get_global_mouse_position()
-	
+
 	if properties["duration"] <= 0.5:
 		particle_emitter.duration = 0.5
 	else:
 		particle_emitter.duration = properties["duration"]
-	
+
 	if properties["element"] == "fire":
 		particle_emitter.modulate = Color.RED
 		spell_instance.modulate = Color(1, 0, 0, 0.05)
@@ -143,8 +178,36 @@ func spell_caster(properties: Dictionary):
 	if properties["element"] == "lightning":
 		particle_emitter.modulate = Color.PURPLE
 		spell_instance.modulate = Color(1, 0, 1, 0.05)
-		
+
 	particle_instance.scale = Vector2(int(properties["width"]), int(properties["height"]))
-	
+
 	add_child(spell_instance)
 	add_child(particle_instance)
+
+
+# Blinks the "Press F..." prompt on/off every PROMPT_FLASH_PERIOD / 2
+# seconds while a level up is available, and opens the Light Government menu
+# when the player presses F.
+func _update_level_up_prompt() -> void:
+	if pending_level_ups <= 0:
+		level_up_prompt.visible = false
+		return
+
+	var phase := fmod(Time.get_ticks_msec() / 1000.0, PROMPT_FLASH_PERIOD)
+	level_up_prompt.visible = phase < PROMPT_FLASH_PERIOD / 2.0
+
+	if Input.is_action_just_pressed("ui_call_light_government"):
+		_open_light_government_menu()
+
+
+func _open_light_government_menu() -> void:
+	level_up_prompt.visible = false
+	get_tree().paused = true
+	light_government_menu.open()
+
+
+# Called when the Light Government menu finishes (player picked an upgrade
+# option). Spends one of the queued level ups; if more are queued, the
+# prompt starts blinking again on the next _process() call.
+func _on_light_government_menu_resolved() -> void:
+	pending_level_ups -= 1
