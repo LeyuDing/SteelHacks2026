@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 
 @export var HP = 10.0
+@export var max_HP = 10.0
 
 func _onready():
 	# Makes the camera attach to the player the main one
@@ -29,4 +30,4 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func take_damage(damage : int):
-	HP -= damage
+	HP = max(HP - damage, 0.0)
