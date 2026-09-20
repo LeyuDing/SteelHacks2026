@@ -17,7 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+
 GameClock="*res://Scripts/game_clock.gd"
+ApiCall="*uid://6lkynjpm001"
+
 
 [display]
 
