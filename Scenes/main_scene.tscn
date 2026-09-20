@@ -12,6 +12,13 @@
 [ext_resource type="Script" uid="uid://cwrtbq3dg7rs5" path="res://Scripts/game_over_screen.gd" id="7_gameover"]
 [ext_resource type="Script" uid="uid://il2mw54lx4xs" path="res://Scenes/texture_progress_bar.gd" id="8_ioaeq"]
 [ext_resource type="Texture2D" uid="uid://bd0c7bxy5c1le" path="res://Assets/doyle/regular_doyle.png" id="10_mai8y"]
+[ext_resource type="Script" uid="uid://cwrtbq3dg7rs5" path="res://Scripts/game_over_screen.gd" id="7_gameover"]
+[ext_resource type="Texture2D" uid="uid://dr7x7ckrlra8o" path="res://Assets/floors/laundry_floor.png" id="9_m1efj"]
+[ext_resource type="Texture2D" uid="uid://bawuses8fbtjg" path="res://Assets/floors/mattress_firm_floor.png" id="10_drdnd"]
+[ext_resource type="Texture2D" uid="uid://xfmn6mah88mv" path="res://Assets/floors/dollar_floor.png" id="11_ioaeq"]
+[ext_resource type="Texture2D" uid="uid://br8hkubs5811u" path="res://Assets/floors/arcade_floor.png" id="12_7ewk0"]
+[ext_resource type="Texture2D" uid="uid://cccs5kxto2gvk" path="res://Assets/walls/laundry_wall.png" id="13_7ewk0"]
+[ext_resource type="Texture2D" uid="uid://k6o18u21fhyh" path="res://Assets/walls/mattress_firm_wall.png" id="14_lhp3t"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x6ack"]
 vertices = PackedVector2Array(1920, 1516.5469, 1919.0703, 1920, -1920, 1920, -1920, -1920, 1920, -1920)
@@ -23,16 +30,50 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1932, -1931, -1945, 19
 [node name="MainScene" type="Node2D" unique_id=1543140646]
 script = ExtResource("1_jv6wh")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1244013232]
+texture_repeat = 2
+position = Vector2(-1922, -1922)
+scale = Vector2(2.0231578, 2.0231578)
+texture = ExtResource("9_m1efj")
+region_enabled = true
+region_rect = Rect2(0, 0, 1900, 1900)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=531737070]
+texture_repeat = 2
+position = Vector2(1933.0001, -1930.0001)
+scale = Vector2(2.03, 2.03)
+texture = ExtResource("10_drdnd")
+region_enabled = true
+region_rect = Rect2(0, 0, 1900, 1900)
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1377370558]
+texture_repeat = 2
+position = Vector2(1931.5, 1936)
+scale = Vector2(2.0331578, 2.0378947)
+texture = ExtResource("11_ioaeq")
+region_enabled = true
+region_rect = Rect2(0, 0, 1900, 1900)
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1259191570]
+texture_repeat = 2
+position = Vector2(-1918.5, 1917.5)
+scale = Vector2(2.0194738, 2.018421)
+texture = ExtResource("12_7ewk0")
+region_enabled = true
+region_rect = Rect2(0, 0, 1900, 1900)
+
 [node name="PlayerCharacter" parent="." unique_id=461456606 instance=ExtResource("1_6l7je")]
 
 [node name="EnemyTimer" type="Timer" parent="." unique_id=1259773366]
-wait_time = 5.0
+wait_time = 2.5
 autostart = true
 script = ExtResource("3_jv6wh")
+
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1240505914]
 
 [node name="ClockLabel" type="Label" parent="UI" unique_id=2032481570]
+
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -68,9 +109,11 @@ script = ExtResource("5_cooldownbar")
 bottom_margin = 68.0
 
 [node name="HealthBar" type="Control" parent="UI" unique_id=905936081]
+
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("6_healthbar")
+
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=664507344]
 anchors_preset = -1
@@ -88,14 +131,17 @@ texture_progress = ExtResource("7_drdnd")
 script = ExtResource("8_ioaeq")
 
 [node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=231643533]
+
 script = ExtResource("7_gameover")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=966248076]
+scale = Vector2(2, 2)
 navigation_polygon = SubResource("NavigationPolygon_x6ack")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D" unique_id=385608559]
-position = Vector2(2000, 0)
-scale = Vector2(1, 50)
+visible = false
+position = Vector2(3209, -86.50001)
+scale = Vector2(20, 50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D" unique_id=1985354750]
 scale = Vector2(7, 7)
@@ -113,19 +159,42 @@ scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_ia7du")
 
 [node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D2" unique_id=285272130]
-texture = ExtResource("2_jv6wh")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="NavigationRegion2D" unique_id=1190042307]
-position = Vector2(0, -2000)
-rotation = 1.5707964
+[node name="StaticBody2D3" type="StaticBody2D" parent="NavigationRegion2D" unique_id=263844216]
+position = Vector2(1998, 7)
 scale = Vector2(1, 50)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=1794846317]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=1515604910]
 scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_ia7du")
 
-[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=8583694]
-texture = ExtResource("2_jv6wh")
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D3" unique_id=865737780]
+
+[node name="LaundryWall" type="StaticBody2D" parent="NavigationRegion2D" unique_id=1190042307]
+position = Vector2(-965.5, -1954.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/LaundryWall" unique_id=1794846317]
+scale = Vector2(120, 4)
+shape = SubResource("RectangleShape2D_ia7du")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/LaundryWall" unique_id=8583694]
+texture_repeat = 2
+texture = ExtResource("13_7ewk0")
+region_enabled = true
+region_rect = Rect2(0, 0, 1930, 64)
+
+[node name="MatressWall" type="StaticBody2D" parent="NavigationRegion2D" unique_id=1577926417]
+position = Vector2(965, -1954.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/MatressWall" unique_id=459401870]
+scale = Vector2(120, 4)
+shape = SubResource("RectangleShape2D_ia7du")
+
+[node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/MatressWall" unique_id=125949480]
+texture_repeat = 2
+texture = ExtResource("14_lhp3t")
+region_enabled = true
+region_rect = Rect2(0, 0, 1930, 64)
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="NavigationRegion2D" unique_id=956883194]
 position = Vector2(0, 2000)
@@ -137,7 +206,6 @@ scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_ia7du")
 
 [node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D4" unique_id=1843304961]
-texture = ExtResource("2_jv6wh")
 
 [node name="Spell1Timer" type="Timer" parent="." unique_id=758584175]
 one_shot = true

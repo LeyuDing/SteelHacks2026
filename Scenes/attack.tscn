@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://mwwx0qk8v44b" path="res://Scripts/attack.gd" id="1_ht1lw"]
 [ext_resource type="Texture2D" uid="uid://d0sfp3e5xb10h" path="res://Assets/fist.png" id="2_ht1lw"]
+[ext_resource type="Texture2D" uid="uid://sdfyj1lqewbf" path="res://Assets/pngwing.com.png" id="3_uvg5y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ia7du"]
 
@@ -19,6 +20,13 @@ scale = Vector2(7, 7)
 shape = SubResource("RectangleShape2D_ia7du")
 
 [node name="Attack" type="Sprite2D" parent="." unique_id=178992816]
+visible = false
 position = Vector2(80, 0)
 scale = Vector2(3, 4.2)
 texture = ExtResource("2_ht1lw")
+
+[node name="Pngwing_com" type="Sprite2D" parent="." unique_id=301778366]
+position = Vector2(120.00001, 0)
+rotation = -1.5707964
+scale = Vector2(0.038906276, 0.029536052)
+texture = ExtResource("3_uvg5y")

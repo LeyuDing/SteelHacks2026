@@ -47,6 +47,7 @@ func set_spell(index: int, spell: Dictionary) -> void:
 		2: spell3 = spell
 		3: spell4 = spell
 
+
 @export var exp : int = 0
 @export var expCap : int = 1
 
