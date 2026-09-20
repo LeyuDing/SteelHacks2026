@@ -319,11 +319,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 16
-text_overrun_behavior = 0
-clip_text = false
-autowrap_mode = 3
-alignment = 0
 text = "Option 1"
+alignment = 0
+autowrap_mode = 3
 
 [node name="Option2" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=420149523]
 process_mode = 3
@@ -332,11 +330,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 16
-text_overrun_behavior = 0
-clip_text = false
-autowrap_mode = 3
-alignment = 0
 text = "Option 2"
+alignment = 0
+autowrap_mode = 3
 
 [node name="Option3" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=1573692399]
 process_mode = 3
@@ -345,11 +341,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 16
-text_overrun_behavior = 0
-clip_text = false
-autowrap_mode = 3
-alignment = 0
 text = "Option 3"
+alignment = 0
+autowrap_mode = 3
 
 [node name="SlotSelectScreen" type="Control" parent="LevelUpMenu/Background" unique_id=138919257]
 process_mode = 3
@@ -413,11 +407,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 15
-text_overrun_behavior = 0
-clip_text = false
-autowrap_mode = 3
-alignment = 0
 text = "Slot 1"
+alignment = 0
+autowrap_mode = 3
 
 [node name="Slot2" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=420149524]
 process_mode = 3
@@ -426,11 +418,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 15
-text_overrun_behavior = 0
-clip_text = false
-autowrap_mode = 3
-alignment = 0
 text = "Slot 2"
+alignment = 0
+autowrap_mode = 3
 
 [node name="Slot3" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=1573692400]
 process_mode = 3
@@ -439,11 +429,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 15
-text_overrun_behavior = 0
-clip_text = false
-autowrap_mode = 3
-alignment = 0
 text = "Slot 3"
+alignment = 0
+autowrap_mode = 3
 
 [node name="Slot4" type="Button" parent="LevelUpMenu/Background/SlotSelectScreen/SlotOptions" unique_id=1573692401]
 process_mode = 3
@@ -452,11 +440,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 15
-text_overrun_behavior = 0
-clip_text = false
-autowrap_mode = 3
-alignment = 0
 text = "Slot 4"
+alignment = 0
+autowrap_mode = 3
 
 [connection signal="timeout" from="EnemyTimer" to="EnemyTimer" method="_on_timeout"]
 [connection signal="text_submitted" from="LevelUpMenu/Background/InputScreen/InputBox" to="LevelUpMenu" method="_on_input_box_text_submitted"]

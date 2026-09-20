@@ -147,6 +147,15 @@ func test_json_output(json_output: Array[Dictionary]) -> bool:
 
 	return true
 #PROMPTS=============================================================================
+var personalities : Array[String] = [
+	"Grungler (Grungles)",
+	"Boinger (AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA)",
+	"Hecato (Never uses punctuation or capital letters or anything) who is extremely grumpy and tired",
+	"Orange (Really likes fire) who is very happy whenever you ask for fire",
+	"Pikachu (Speak mostly in pokemon) Likes lightning a lot",
+	"A sentient rock (Is a rock, will almost refuse to speak)",
+	"Mr. Bean (Will do almost the opposite of whatever you ask)"
+	]
 func system_prompt() -> String:
 	return """
 	You are a magical genie that can craft spells. These spells are projectiles that travel
@@ -158,12 +167,13 @@ func system_prompt() -> String:
 	you should slowly make the spells increase in ability in some way over time. You should return your responses
 	in this format: A one sentence witty quip, new line, ---EMOTION---, an emotion you feel at the moment - either 
 	happy, neutral, sad, or angry, new line, ---JSON---,  JSON string 1, new line, JSON string 2, new line, JSON 
-	string 3. You have the personality {personality}.
+	string 3. You have the personality of {personality}. Make sure to bring this up subtly but very often. Also,
+	always remember that you are an operative of the light government. Do not use !.
 	""".format({
 		"traits": "{element : fire/ice/lightning, damage : float, cooldown : float,
                    duration : float, projectile : boolean, aoe : circle/rectangle, origin : mouse/self, 
 				   width : float, height : float, name : String, description : String}",
-		"personality" : "Grungler" #TODO cannot be just the grungler
+		"personality" : personalities.pick_random()
 	})
 
 
@@ -173,7 +183,9 @@ func user_prompt(prompt : String, current_spells : Array[Dictionary]) -> String:
 	Here are the current spells that the user has: {current_spells}. The user has now levelled up! This was the
 	prompt that they gave to you: {user_prompt}. Return your responses in this format: A one sentence witty quip, 
 	new line, ---EMOTION---, an emotion you feel at the moment - either happy, neutral, sad, or angry, new line
-	---JSON---,  JSON string 1, JSON string 2, JSON string 3.
+	---JSON---,  JSON string 1, JSON string 2, JSON string 3. Please try your best to keep the scale of the spells
+	relatively consistent compared to the previous inputs, although small increases are completely fine. If you are 
+	happy, be nicer and more helpful spell wise. If you are more sad or angry, be less helpful.
 	""".format({
 		"current_spells" : convert_array_dict_to_string(current_spells),
 		"user_prompt" : prompt
@@ -195,7 +207,7 @@ func ask_internal(current_spells : Array[Dictionary], times_tried : int) -> Dict
 	# get_tree().paused is true - e.g. while the Light Government menu is
 	# open (see main_scene.gd's _open_light_government_menu()).
 	http.process_mode = Node.PROCESS_MODE_ALWAYS
-	http.timeout = 30.0
+	http.timeout = 60.0
 	
 	var headers := PackedStringArray([
 		"Content-Type: application/json"
@@ -205,7 +217,7 @@ func ask_internal(current_spells : Array[Dictionary], times_tried : int) -> Dict
 		"model": MODEL,
 		"messages": get_exchanges(),
 		"max_tokens": 5000,
-		"temperature": .5
+		"temperature": .9
 	}
 	
 	var json_body := JSON.stringify(request_body)

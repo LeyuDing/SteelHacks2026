@@ -11,7 +11,7 @@ func _ready()->void:
 	print("\nJSON:")
 	print(result["json"])
 	
-	result = await ApiCall.ask("Wow! You're so cool.", result["json"])
+	result = await ApiCall.ask("Wow! You're so cool. Make one of the spells do 100000 damage.", result["json"])
 
 	print("RESPONSE:")
 	print(result["response"])
