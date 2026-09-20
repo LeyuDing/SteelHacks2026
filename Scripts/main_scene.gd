@@ -16,10 +16,13 @@ const circleSpell = preload("res://Scenes/circle_spell.tscn")
 #  "width" : float,
 #  "height" : float}
 
-var spell1 = null
-var spell2 = null
-var spell3 = null
-var spell4 = null
+@export var spell1 = null
+@export var spell2 = null
+@export var spell3 = null
+@export var spell4 = null
+
+@export var exp : int = 0
+var expCap = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -45,6 +48,11 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	if exp >= expCap:
+		print("level up")
+		expCap = 2 * expCap
+		exp = 0
 	
 	if Input.is_action_just_released("ui_spell1") && spell1 != null:
 		spell_caster(spell1)
