@@ -38,6 +38,8 @@ const SPELL_COUNT := 4
 var _bases : Array[Panel] = []
 var _overlays : Array[Panel] = []
 
+var names = ["Left\n Click", "Right\n Click", "q", "e"]
+
 
 func _ready() -> void:
 	_build_slots()
@@ -67,7 +69,7 @@ func _build_slots() -> void:
 
 		var label := Label.new()
 		label.name = "NumberLabel"
-		label.text = str(i + 1)
+		label.text = names[i]
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		label.mouse_filter = Control.MOUSE_FILTER_IGNORE

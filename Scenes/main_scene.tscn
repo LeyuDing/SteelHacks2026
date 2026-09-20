@@ -11,10 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://mbq7ijmt1d02" path="res://Assets/mana_bar/fullbar.png" id="7_drdnd"]
 [ext_resource type="Script" uid="uid://cwrtbq3dg7rs5" path="res://Scripts/game_over_screen.gd" id="7_gameover"]
 [ext_resource type="Script" uid="uid://il2mw54lx4xs" path="res://Scenes/texture_progress_bar.gd" id="8_ioaeq"]
-[ext_resource type="Texture2D" uid="uid://bd0c7bxy5c1le" path="res://Assets/doyle/regular_doyle.png" id="10_mai8y"]
-[ext_resource type="Script" uid="uid://cwrtbq3dg7rs5" path="res://Scripts/game_over_screen.gd" id="7_gameover"]
 [ext_resource type="Texture2D" uid="uid://dr7x7ckrlra8o" path="res://Assets/floors/laundry_floor.png" id="9_m1efj"]
 [ext_resource type="Texture2D" uid="uid://bawuses8fbtjg" path="res://Assets/floors/mattress_firm_floor.png" id="10_drdnd"]
+[ext_resource type="Texture2D" uid="uid://bd0c7bxy5c1le" path="res://Assets/doyle/regular_doyle.png" id="10_mai8y"]
 [ext_resource type="Texture2D" uid="uid://xfmn6mah88mv" path="res://Assets/floors/dollar_floor.png" id="11_ioaeq"]
 [ext_resource type="Texture2D" uid="uid://br8hkubs5811u" path="res://Assets/floors/arcade_floor.png" id="12_7ewk0"]
 [ext_resource type="Texture2D" uid="uid://cccs5kxto2gvk" path="res://Assets/walls/laundry_wall.png" id="13_7ewk0"]
@@ -69,11 +68,9 @@ wait_time = 2.5
 autostart = true
 script = ExtResource("3_jv6wh")
 
-
 [node name="UI" type="CanvasLayer" parent="." unique_id=1240505914]
 
 [node name="ClockLabel" type="Label" parent="UI" unique_id=2032481570]
-
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -109,11 +106,9 @@ script = ExtResource("5_cooldownbar")
 bottom_margin = 68.0
 
 [node name="HealthBar" type="Control" parent="UI" unique_id=905936081]
-
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("6_healthbar")
-
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="UI" unique_id=664507344]
 anchors_preset = -1
@@ -131,7 +126,6 @@ texture_progress = ExtResource("7_drdnd")
 script = ExtResource("8_ioaeq")
 
 [node name="GameOverScreen" type="CanvasLayer" parent="." unique_id=231643533]
-
 script = ExtResource("7_gameover")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=966248076]
