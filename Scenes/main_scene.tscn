@@ -88,4 +88,16 @@ shape = SubResource("RectangleShape2D_ia7du")
 [node name="Sprite2D" type="Sprite2D" parent="NavigationRegion2D/StaticBody2D4" unique_id=1843304961]
 texture = ExtResource("2_jv6wh")
 
+[node name="Spell1Timer" type="Timer" parent="." unique_id=758584175]
+one_shot = true
+
+[node name="Spell2Timer" type="Timer" parent="." unique_id=105537369]
+one_shot = true
+
+[node name="Spell3Timer" type="Timer" parent="." unique_id=902802115]
+one_shot = true
+
+[node name="Spell4Timer" type="Timer" parent="." unique_id=1128208693]
+one_shot = true
+
 [connection signal="timeout" from="EnemyTimer" to="EnemyTimer" method="_on_timeout"]
