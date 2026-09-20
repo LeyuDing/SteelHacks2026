@@ -173,7 +173,8 @@ func user_prompt(prompt : String, current_spells : Array[Dictionary]) -> String:
 	Here are the current spells that the user has: {current_spells}. The user has now levelled up! This was the
 	prompt that they gave to you: {user_prompt}. Return your responses in this format: A one sentence witty quip, 
 	new line, ---EMOTION---, an emotion you feel at the moment - either happy, neutral, sad, or angry, new line
-	---JSON---,  JSON string 1, JSON string 2, JSON string 3.
+	---JSON---,  JSON string 1, JSON string 2, JSON string 3. Try to keep the spells balanced by making them roughly 
+	the same power as the ones that already exist. Small increases in power are allowed though. 
 	""".format({
 		"current_spells" : convert_array_dict_to_string(current_spells),
 		"user_prompt" : prompt
