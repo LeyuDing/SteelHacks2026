@@ -4,24 +4,9 @@
 [ext_resource type="Script" uid="uid://dnj22vl2dkl80" path="res://Scripts/main_scene.gd" id="1_jv6wh"]
 [ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="2_jv6wh"]
 [ext_resource type="Script" uid="uid://jhteooycqyun" path="res://Scripts/enemy_spawner.gd" id="3_jv6wh"]
-[ext_resource type="Script" path="res://Scripts/clock_display.gd" id="4_clock"]
-[ext_resource type="Script" path="res://Scripts/level_bar.gd" id="5_levelbar"]
-[ext_resource type="Script" path="res://Scripts/light_government_menu.gd" id="6_lightgov"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_x6ack"]
-vertices = PackedVector2Array(1920, 1516.5469, 1919.0703, 1920, -1920, 1920, -1920, -1920, 1920, -1920)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1932, -1931, -1945, 1940, 1929, 1949, 1938, -1943)])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ia7du"]
-
-[sub_resource type="Gradient" id="Gradient_levelbar_fill"]
-colors = PackedColorArray(0.3, 0.6, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_levelbar_fill"]
-gradient = SubResource("Gradient_levelbar_fill")
-width = 32
-height = 32
+[ext_resource type="Script" uid="uid://cepx7xjnlyxk3" path="res://Scripts/clock_display.gd" id="4_clock"]
+[ext_resource type="Script" uid="uid://sqoahls6ee5d" path="res://Scripts/level_bar.gd" id="5_levelbar"]
+[ext_resource type="Script" uid="uid://bmpfhc20snq5s" path="res://Scripts/light_government_menu.gd" id="6_lightgov"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_levelbar_frame"]
 bg_color = Color(0.1, 0.1, 0.15, 0.55)
@@ -35,6 +20,13 @@ corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_x6ack"]
+vertices = PackedVector2Array(1920, 1516.5469, 1919.0703, 1920, -1920, 1920, -1920, -1920, 1920, -1920)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1932, -1931, -1945, 1940, 1929, 1949, 1938, -1943)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ia7du"]
+
 [node name="MainScene" type="Node2D" unique_id=1543140646]
 script = ExtResource("1_jv6wh")
 
@@ -45,9 +37,9 @@ wait_time = 5.0
 autostart = true
 script = ExtResource("3_jv6wh")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1240505914]
 
-[node name="ClockLabel" type="Label" parent="UI"]
+[node name="ClockLabel" type="Label" parent="UI" unique_id=2032481570]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -61,7 +53,8 @@ text = "00:00"
 horizontal_alignment = 1
 script = ExtResource("4_clock")
 
-[node name="LevelBar" type="Control" parent="UI" unique_id=4021459901]
+[node name="LevelBar" type="Control" parent="UI" unique_id=-273507395]
+layout_mode = 3
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -74,7 +67,7 @@ offset_bottom = 150.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Frame" type="Panel" parent="UI/LevelBar" unique_id=4021459902]
+[node name="Frame" type="Panel" parent="UI/LevelBar" unique_id=-273507394]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +76,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_levelbar_frame")
 
-[node name="Fill" type="TextureProgressBar" parent="UI/LevelBar" unique_id=4021459903]
+[node name="Fill" type="TextureProgressBar" parent="UI/LevelBar" unique_id=-273507393]
+modulate = Color(1, 1, 1, 0.6)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,26 +88,13 @@ offset_right = -6.0
 offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
-modulate = Color(1, 1, 1, 0.6)
-min_value = 0.0
 max_value = 1.0
 step = 0.001
-value = 0.0
-# Placeholder fill sprite: a plain solid-color texture (see the Gradient /
-# GradientTexture2D sub-resources above) - swap for real "mana meter" art
-# when available. Deliberately not icon.svg: its base color is dark navy,
-# which stayed nearly invisible against the dark Frame panel even with
-# modulate alpha, since modulate can only darken/tint a texture, not
-# brighten it - a plain bright texture makes the alpha actually read.
-texture_progress = SubResource("GradientTexture2D_levelbar_fill")
 fill_mode = 3
-# Without this, TextureProgressBar draws texture_progress at its native
-# pixel size instead of stretching it to fill this control's rect, so the
-# bar would render as a tiny square instead of a tall vertical bar.
-nine_patch_stretch = true
 script = ExtResource("5_levelbar")
 
-[node name="LevelUpPrompt" type="Label" parent="UI"]
+[node name="LevelUpPrompt" type="Label" parent="UI" unique_id=1594495963]
+visible = false
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -126,7 +107,6 @@ theme_override_font_sizes/font_size = 28
 text = "Press F to call the Light Government"
 horizontal_alignment = 1
 vertical_alignment = 1
-visible = false
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=966248076]
 navigation_polygon = SubResource("NavigationPolygon_x6ack")
@@ -189,12 +169,12 @@ one_shot = true
 [node name="Spell4Timer" type="Timer" parent="." unique_id=1128208693]
 one_shot = true
 
-[node name="LevelUpMenu" type="CanvasLayer" parent="."]
+[node name="LevelUpMenu" type="CanvasLayer" parent="." unique_id=2121481011]
 process_mode = 3
 layer = 10
 script = ExtResource("6_lightgov")
 
-[node name="Background" type="ColorRect" parent="LevelUpMenu"]
+[node name="Background" type="ColorRect" parent="LevelUpMenu" unique_id=1760387183]
 process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,7 +183,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.75)
 
-[node name="InputScreen" type="Control" parent="LevelUpMenu/Background"]
+[node name="InputScreen" type="Control" parent="LevelUpMenu/Background" unique_id=475820079]
 process_mode = 3
 layout_mode = 1
 anchors_preset = 15
@@ -212,23 +192,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/InputScreen"]
+[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/InputScreen" unique_id=40879156]
 process_mode = 3
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_jv6wh")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="InputBox" type="LineEdit" parent="LevelUpMenu/Background/InputScreen"]
+[node name="InputBox" type="LineEdit" parent="LevelUpMenu/Background/InputScreen" unique_id=503430453]
 process_mode = 3
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -241,33 +220,32 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 24
 placeholder_text = "Type your request to the Light Government..."
 
-[node name="WaitingScreen" type="Control" parent="LevelUpMenu/Background"]
+[node name="WaitingScreen" type="Control" parent="LevelUpMenu/Background" unique_id=1932036016]
 process_mode = 3
-layout_mode = 1
 visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/WaitingScreen"]
+[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/WaitingScreen" unique_id=1034435511]
 process_mode = 3
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_jv6wh")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="WaitingLabel" type="Label" parent="LevelUpMenu/Background/WaitingScreen"]
+[node name="WaitingLabel" type="Label" parent="LevelUpMenu/Background/WaitingScreen" unique_id=1459095762]
 process_mode = 3
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -280,33 +258,32 @@ text = "Waiting..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResponseScreen" type="Control" parent="LevelUpMenu/Background"]
+[node name="ResponseScreen" type="Control" parent="LevelUpMenu/Background" unique_id=138919256]
 process_mode = 3
-layout_mode = 1
 visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/ResponseScreen"]
+[node name="CharacterSprite" type="TextureRect" parent="LevelUpMenu/Background/ResponseScreen" unique_id=1401069283]
 process_mode = 3
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.3
-offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_jv6wh")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="ResponseText" type="Label" parent="LevelUpMenu/Background/ResponseScreen"]
+[node name="ResponseText" type="Label" parent="LevelUpMenu/Background/ResponseScreen" unique_id=343571835]
 process_mode = 3
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_top = 0.3
 anchor_right = 1.0
 anchor_bottom = 0.5
@@ -315,15 +292,14 @@ offset_right = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 22
-text = ""
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="SpellOptions" type="HBoxContainer" parent="LevelUpMenu/Background/ResponseScreen"]
+[node name="SpellOptions" type="HBoxContainer" parent="LevelUpMenu/Background/ResponseScreen" unique_id=666783299]
 process_mode = 3
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -336,7 +312,7 @@ grow_vertical = 2
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Option1" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions"]
+[node name="Option1" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=1036457120]
 process_mode = 3
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
@@ -344,7 +320,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
 text = "Option 1"
 
-[node name="Option2" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions"]
+[node name="Option2" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=420149523]
 process_mode = 3
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
@@ -352,7 +328,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
 text = "Option 2"
 
-[node name="Option3" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions"]
+[node name="Option3" type="Button" parent="LevelUpMenu/Background/ResponseScreen/SpellOptions" unique_id=1573692399]
 process_mode = 3
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2

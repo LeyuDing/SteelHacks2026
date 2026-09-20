@@ -63,6 +63,8 @@ func _on_input_box_text_submitted(new_text: String) -> void:
 	_show_screen(waiting_screen)
 	_process_request(submitted_text)
 
+# This thing 
+@onready var main_scene = $MainScene
 
 # TODO: replace this stand-in with the real Light Government request/response
 # system. Whatever calls it just needs to end by calling _on_response_ready()
@@ -70,14 +72,14 @@ func _on_input_box_text_submitted(new_text: String) -> void:
 # defaults to process_always = true, so it (like everything else in this
 # menu) keeps ticking while get_tree().paused is true.
 func _process_request(text: String) -> void:
-	await get_tree().create_timer(2.0).timeout
+	var api_response := await ApiCall.ask(text, main_scene.get_dict_of_spells())
+	var witty_quip : String = api_response["response"]
+	var spells : Array[Dictionary] = api_response["json"]
+	var spell_desc := [spells[0]["name"], spells[1]["name"], spells[2]["name"]]
+	_on_response_ready(witty_quip, spell_desc, spells)
 
-	var response := "The Light Government has reviewed your request."
-	var options := ["Placeholder Spell A", "Placeholder Spell B", "Placeholder Spell C"]
-	_on_response_ready(response, options)
 
-
-func _on_response_ready(response: String, options: Array) -> void:
+func _on_response_ready(response: String, options: Array, spells : Array[Dictionary]) -> void:
 	response_text.text = response
 	spell_options = options
 
@@ -86,6 +88,9 @@ func _on_response_ready(response: String, options: Array) -> void:
 		button.visible = i < options.size()
 		if i < options.size():
 			button.text = str(options[i])
+			
+			#When a button gets pressed, it should read from self.spell_itself to figure out the spell
+			button.set_meta("spell_itself", spells[i])
 
 	_show_screen(response_screen)
 
