@@ -5,6 +5,21 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m5cyh"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u4i7n"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+gravity = Vector3(0, -100, 0)
+turbulence_enabled = true
+turbulence_noise_strength = 8.59
+turbulence_noise_scale = 9.475
+turbulence_noise_speed_random = 1.17
+turbulence_influence_min = 0.080000006
+turbulence_influence_max = 0.92600006
+turbulence_initial_displacement_min = -90.5
+turbulence_initial_displacement_max = 95.8
+
 [node name="RectangleSpell" type="Node2D" unique_id=426429013]
 modulate = Color(0.19210741, 0.57142806, 0.9999998, 1)
 script = ExtResource("1_7t21j")
@@ -25,6 +40,16 @@ shape = SubResource("RectangleShape2D_m5cyh")
 [node name="Timer" type="Timer" parent="." unique_id=907333649]
 wait_time = 0.5
 autostart = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1450957881]
+position = Vector2(64, -4)
+rotation = 1.5739399
+scale = Vector2(-0.80250597, 0.760253)
+amount = 500
+lifetime = 4.0
+preprocess = 4.93
+speed_scale = 1.51
+process_material = SubResource("ParticleProcessMaterial_u4i7n")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
