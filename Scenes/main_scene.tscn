@@ -5,6 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://528og3rokxnr" path="res://icon.svg" id="2_jv6wh"]
 [ext_resource type="Script" uid="uid://jhteooycqyun" path="res://Scripts/enemy_spawner.gd" id="3_jv6wh"]
 [ext_resource type="Script" path="res://Scripts/clock_display.gd" id="4_clock"]
+[ext_resource type="Script" path="res://Scripts/spell_cooldown_bar.gd" id="5_cooldownbar"]
+[ext_resource type="Script" path="res://Scripts/health_bar.gd" id="6_healthbar"]
+[ext_resource type="Script" path="res://Scripts/game_over_screen.gd" id="7_gameover"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x6ack"]
 vertices = PackedVector2Array(1920, 1516.5469, 1919.0703, 1920, -1920, 1920, -1920, -1920, 1920, -1920)
@@ -38,6 +41,16 @@ theme_override_font_sizes/font_size = 28
 text = "00:00"
 horizontal_alignment = 1
 script = ExtResource("4_clock")
+
+[node name="SpellCooldownBar" type="Control" parent="UI"]
+script = ExtResource("5_cooldownbar")
+bottom_margin = 68.0
+
+[node name="HealthBar" type="Control" parent="UI"]
+script = ExtResource("6_healthbar")
+
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+script = ExtResource("7_gameover")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=966248076]
 navigation_polygon = SubResource("NavigationPolygon_x6ack")
