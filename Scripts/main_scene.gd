@@ -16,45 +16,76 @@ const circleSpell = preload("res://Scenes/circle_spell.tscn")
 #  "width" : float,
 #  "height" : float}
 
+var spell1 = null
+var spell2 = null
+var spell3 = null
+var spell4 = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	spell1 = {"element" : "ice",
+			  "damage" : 1.0,
+			  "cooldown" : 5.0, 
+			  "duration" : 10.0, 
+			  "projectile" : false,
+			  "aoe" : "rectangle", 
+			  "origin" : "self", 
+			  "width" : 10.0, 
+			  "height" : 1.0}
+	spell2 = {"element" : "fire",
+			  "damage" : 2.0,
+			  "cooldown" : 1.0, 
+			  "duration" : 0.1, 
+			  "projectile" : true,
+			  "aoe" : "rectangle", 
+			  "origin" : "mouse", 
+			  "width" : 3.0, 
+			  "height" : 3.0}
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	if Input.is_action_just_released("ui_spell1"):
-		spell_caster({"damage" : 1.0, "duration" : 10.0, "aoe" : "rectangle", "origin" : "self", "width" : 10.0, "height" : 1.0})
+	if Input.is_action_just_released("ui_spell1") && spell1 != null:
+		spell_caster(spell1)
 		
-	if Input.is_action_just_released("ui_spell2"):
-		spell_caster({"damage" : 1.0, "duration" : 10.0, "aoe" : "circle", "origin" : "mouse", "width" : 1.0, "height" : 1.0})
+	if Input.is_action_just_released("ui_spell2") && spell2 != null:
+		spell_caster(spell2)
 		
-	if Input.is_action_just_released("ui_spell3"):
-		spell_caster({"damage" : 10.0, "duration" : 0.1, "aoe" : "rectangle", "origin" : "mouse", "width" : 1.0, "height" : 2.0})
+	if Input.is_action_just_released("ui_spell3") && spell3 != null:
+		spell_caster(spell3)
 		
-	if Input.is_action_just_released("ui_spell4"):
-		spell_caster({"damage" : 10.0, "duration" : 0.1, "aoe" : "circle", "origin" : "self", "width" : 2.0, "height" : 2.0})
+	if Input.is_action_just_released("ui_spell4") && spell4 != null:
+		spell_caster(spell4)
 		
 
 func spell_caster(properties: Dictionary):
 	
 	var spell_instance
 	
+	#aoe
 	if properties["aoe"] == "rectangle":
 		spell_instance = rectangleSpell.instantiate()
 		spell_instance.look_at(get_global_mouse_position() - player.global_position)
 	if properties["aoe"] == "circle":
 		spell_instance = circleSpell.instantiate()
-	
-	if properties["origin"] == "self":
-		spell_instance.position = player.position
 		
-	if properties["origin"] == "mouse":
-		spell_instance.position = get_global_mouse_position()
-		
+	#basic attributes
+	spell_instance.element = properties["element"]
 	spell_instance.damage = properties["damage"]
 	spell_instance.duration = properties["duration"]
 		
 	spell_instance.scale = Vector2(int(properties["width"]), int(properties["height"]))
+	
+	#instantiation point
+	if properties["origin"] == "self":
+		spell_instance.position = player.position
+		
+		if properties["aoe"] == "rectangle":
+			var offset = properties["width"] / 2.0
+			spell_instance.global_position += Vector2.RIGHT.rotated(spell_instance.rotation) * offset
+		
+	if properties["origin"] == "mouse":
+		spell_instance.position = get_global_mouse_position()
 	
 	add_child(spell_instance)

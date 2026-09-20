@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var player =  get_parent().get_parent().get_node("PlayerCharacter")
 @onready var navAgent = $NavigationAgent2D
 
+const exp = preload("res://Scenes/exp_drop.tscn")
+
 func _ready():
 	modulate = Color(randf(), randf(), randf(), 1.0)
 	make_path()
@@ -14,6 +16,9 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	
 	if HP <= 0:
+		var expDrop = exp.instantiate()
+		expDrop.global_position = global_position
+		get_parent().add_child(expDrop)
 		queue_free()
 	
 	var direction = to_local(navAgent.get_next_path_position()).normalized()
