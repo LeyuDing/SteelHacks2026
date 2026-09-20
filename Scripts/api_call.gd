@@ -112,28 +112,15 @@ func remove_thinking(response : String) -> String:
 	return regex.sub(response, "").strip_edges()
 
 func get_resp_and_json(response: String) -> Dictionary:
-	var lines := response.strip_edges().split("\n")
+	var parts := response.split("---JSON---", false, 1)
 	
-	var text := ""
+	var text := parts[0].strip_edges()
 	var json_data = null
 	
-	for line in lines:
-		line = line.strip_edges()
-		
-		if line.is_empty():
-			continue
-		
-		var parsed = JSON.parse_string(line)
-		
-		if parsed != null and parsed is Dictionary:
-			json_data = parsed
-		else:
-			text += line + "\n"
-	
-	return {
-		"response": text.strip_edges(),
-		"json": json_data
-	}
+	if parts.size() > 1:
+		var json_text := parts[1].strip_edges()
+		json_data = JSON.parse_string(json_text)
+	return {"response": text, "json": json_data}
 
 
 # Called when the node enters the scene tree for the first time.
