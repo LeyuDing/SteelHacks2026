@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var SPEED : float = 500.0
+@export var SPEED : float = 300.0
 
-@export var HP : float = 10.0
+@export var HP : float = 5.0
 
 @export var burn : float = 0.0
 @export var freeze : float = 0.0
@@ -20,7 +20,7 @@ const exp = preload("res://Scenes/exp_drop.tscn")
 
 func _ready():
 	$Sprite2D.material = $Sprite2D.material.duplicate()
-	#SPEED *= GameClock.elapsed_time/20.0
+	SPEED *= GameClock.elapsed_time/20.0
 	HP *= GameClock.elapsed_time/20.0
 	make_path()
 
