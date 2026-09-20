@@ -57,7 +57,9 @@ var pending_level_ups : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spell1 = {"element" : "ice",
+	spell1 = {"name" : "Ice Comet",
+			  "description" : "Ice em up",	
+			  "element" : "ice",
 			  "damage" : 5.0,
 			  "cooldown" : 1.0, 
 			  "duration" : 0.1, 
@@ -66,7 +68,9 @@ func _ready() -> void:
 			  "origin" : "self", 
 			  "width" : 2.0, 
 			  "height" : 1.0}
-	spell2 = {"element" : "lightning",
+	spell2 = {"name" : "Lightning rocket",
+			  "description" : "Lightning blast",
+			  "element" : "lightning",
 			  "damage" : 0.1,
 			  "cooldown" : 5.0, 
 			  "duration" : 5.0, 

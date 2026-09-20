@@ -43,8 +43,7 @@ signal resolved
 # The order/labels used to render a spell dictionary as
 # "attribute: value" lines on the selection buttons.
 const SPELL_FIELD_ORDER := [
-	"name", "description", "element", "damage", "cooldown",
-	"duration", "projectile", "aoe", "origin", "width", "height",
+	"Name ", "\n\nDescription "
 ]
 
 # Set by _on_input_box_text_submitted(), read by _process_request().
@@ -102,7 +101,7 @@ func _process_request(text: String) -> void:
 	var witty_quip : String = api_response["response"]
 	var spells : Array[Dictionary] = api_response["json"]
 	var spell_desc := [spells[0]["name"], spells[1]["name"], spells[2]["name"]]
-	_on_response_ready(witty_quip, spell_desc, spells)
+	_on_response_ready(witty_quip, spells)
 
 
 # Renders a spell dictionary as "attribute: value" lines, one per line, for
@@ -118,15 +117,14 @@ func _format_spell_lines(spell: Dictionary) -> String:
 	return "\n".join(lines)
 
 
-func _on_response_ready(response: String, options: Array, spells : Array[Dictionary]) -> void:
+func _on_response_ready(response: String, spells : Array[Dictionary]) -> void:
 	response_text.text = response
-	spell_options = options
 
 	for i in spell_option_buttons.size():
 		var button = spell_option_buttons[i]
-		button.visible = i < options.size()
-		if i < options.size():
-			button.text = _format_spell_lines(spells[i])
+		button.visible = i < spells.size()
+		if i < spells.size():
+			button.text = _format_spell_lines({"Name ":spells[i]["name"], "\n\nDescription ":spells[i]["description"]})
 
 			#When a button gets pressed, it should read from self.spell_itself to figure out the spell
 			button.set_meta("spell_itself", spells[i])
@@ -145,8 +143,11 @@ func _open_slot_select_screen() -> void:
 	var current_spells : Array[Dictionary] = main_scene.get_dict_of_spells()
 
 	for i in slot_option_buttons.size():
-		slot_option_buttons[i].text = _format_spell_lines(current_spells[i])
-
+		if (not current_spells[i].is_empty()):
+			print(current_spells[i])
+			slot_option_buttons[i].text = _format_spell_lines({"Name ":current_spells[i]["name"], "\n\nDescription ":current_spells[i]["description"]})
+		else:
+			slot_option_buttons[i].text = "(Empty Slot)"
 	_show_screen(slot_select_screen)
 
 
