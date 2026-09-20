@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca3y7wy0jbynd"
-path="res://.godot/imported/pixil-frame-0 (2).png-3e453401dd9b296c99af6257086f9786.ctex"
+uid="uid://gdeflw0xhw27"
+path="res://.godot/imported/money_wall.png-472dc0f9707050fcbe45d3a81b4d7b3a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/walls/pixil-frame-0 (2).png"
-dest_files=["res://.godot/imported/pixil-frame-0 (2).png-3e453401dd9b296c99af6257086f9786.ctex"]
+source_file="res://Assets/walls/money_wall.png"
+dest_files=["res://.godot/imported/money_wall.png-472dc0f9707050fcbe45d3a81b4d7b3a.ctex"]
 
 [params]
 
