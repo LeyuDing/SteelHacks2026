@@ -5,26 +5,12 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ia7du"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4kiar"]
-particle_flag_align_y = true
-particle_flag_rotate_y = true
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-gravity = Vector3(0, -100, 0)
-turbulence_enabled = true
-turbulence_noise_strength = 8.59
-turbulence_noise_scale = 9.475
-turbulence_noise_speed_random = 1.17
-turbulence_influence_min = 0.080000006
-turbulence_influence_max = 0.92600006
-turbulence_initial_displacement_min = -90.5
-turbulence_initial_displacement_max = 95.8
-
 [node name="circle_spell" type="Node2D" unique_id=1032744867]
 modulate = Color(0.6226018, 0.99999994, 0.4841807, 1)
 script = ExtResource("1_4kiar")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2081771349]
+visible = false
 texture = ExtResource("2_lkq0a")
 
 [node name="Timer" type="Timer" parent="." unique_id=657437196]
@@ -38,16 +24,6 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1605377818]
 scale = Vector2(7, 7)
 shape = SubResource("CircleShape2D_ia7du")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1119961045]
-position = Vector2(1, 0)
-rotation = 1.5739399
-scale = Vector2(-0.80149996, 0.760253)
-amount = 500
-lifetime = 4.0
-preprocess = 4.93
-speed_scale = 1.51
-process_material = SubResource("ParticleProcessMaterial_4kiar")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

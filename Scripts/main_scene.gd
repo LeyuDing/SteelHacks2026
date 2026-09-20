@@ -9,6 +9,7 @@ extends Node2D
 
 const rectangleSpell = preload("res://Scenes/rectangle_spell.tscn")
 const circleSpell = preload("res://Scenes/circle_spell.tscn")
+const particle = preload("res://Scenes/particle.tscn")
 
 # Spells are a dictionary in the following format:
 # {"element" : "fire"/"ice"/"lightning"/"",
@@ -43,12 +44,12 @@ func _ready() -> void:
 	spell2 = {"element" : "fire",
 			  "damage" : 1.0,
 			  "cooldown" : 5.0, 
-			  "duration" : 0.1, 
+			  "duration" : 5.0, 
 			  "projectile" : true,
 			  "aoe" : "rectangle", 
 			  "origin" : "mouse", 
 			  "width" : 3.0, 
-			  "height" : 3.0}	
+			  "height" : 10.0}	
 	
 	# Restart the round clock (see Scripts/game_clock.gd) so it doesn't
 	# carry over elapsed time from a previous round.
@@ -92,6 +93,9 @@ func spell_caster(properties: Dictionary):
 	
 	var spell_instance
 	
+	var particle_instance = particle.instantiate()
+	var particle_emitter = particle_instance.get_node("GPUParticles2D")
+	
 	#aoe
 	if properties["aoe"] == "rectangle":
 		spell_instance = rectangleSpell.instantiate()
@@ -109,12 +113,31 @@ func spell_caster(properties: Dictionary):
 	#instantiation point
 	if properties["origin"] == "self":
 		spell_instance.position = player.position
+		particle_instance.position = player.position
 		
 		if properties["aoe"] == "rectangle":
 			var offset = properties["width"] / 2.0
 			spell_instance.global_position += Vector2.RIGHT.rotated(spell_instance.rotation) * offset
+			particle_instance.global_position += Vector2.RIGHT.rotated(spell_instance.rotation) * offset
 		
 	if properties["origin"] == "mouse":
 		spell_instance.position = get_global_mouse_position()
+		particle_instance.position = get_global_mouse_position()
 	
 	add_child(spell_instance)
+	
+	if properties["duration"] <= 0.5:
+		particle_emitter.duration = 0.5
+	else:
+		particle_emitter.duration = properties["duration"]
+	
+	if properties["element"] == "fire":
+		particle_emitter.modulate = Color.RED
+	if properties["element"] == "ice":
+		particle_emitter.modulate = Color.BLUE
+	if properties["element"] == "lightning":
+		particle_emitter.modulate = Color.PURPLE
+		
+	particle_instance.scale = Vector2(int(properties["width"]), int(properties["height"]))
+	
+	add_child(particle_instance)
