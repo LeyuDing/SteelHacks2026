@@ -48,7 +48,7 @@ func set_spell(index: int, spell: Dictionary) -> void:
 		3: spell4 = spell
 
 @export var exp : int = 0
-var expCap = 1
+@export var expCap : int = 1
 
 # Levels the player has earned but not yet spent on an upgrade. Incremented
 # whenever exp fills expCap; only decremented once the Light Government menu
